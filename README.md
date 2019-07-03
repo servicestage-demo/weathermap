@@ -6,5 +6,7 @@
 1、	weathermapweb是一个基于node.js语言开发的界面微服务  
 2、	fusionweather微服务为界面提供数据，基于java语言开发  
 3、	forecast微服务提供指定城市未来几天天气情况预测的微服务，基于java语言开发  
-4、	weather微服务提供指定城市当前的天气情况  
-5、	weather-beta微服务是weather微服务的新版本，新增了查询指定城市紫外线情况的功能  
+4、	weather微服务提供指定城市当前的天气情况，基于java语言开发  
+5、	weather-beta微服务是weather微服务的新版本，新增了查询指定城市紫外线情况的功能，基于java语言开发  
+天气预报运行起来后的界面如下：  
+![](https://github.com/servicestage-demo/weathermap/blob/master/weathermap.JPG)
