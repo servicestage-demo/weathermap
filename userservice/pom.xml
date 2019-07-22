@@ -88,7 +88,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.service.forecast.ForecastApplication</mainClass>
+					<mainClass>com.service.userservice.UserApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
