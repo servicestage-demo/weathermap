@@ -18,7 +18,6 @@ public class UserService implements IUser {
 	@RequestMapping(value = "/register", produces = { "application/json" }, method = RequestMethod.POST)
 	@Override
 	public int register(@RequestParam(value = "user", required = true) String user,
-			@RequestParam(value = "role", required = false) String role,
 			@RequestParam(value = "telNum", required = true) String telNum) {
 		return userServiceDelegate.register(user, telNum);
 	}

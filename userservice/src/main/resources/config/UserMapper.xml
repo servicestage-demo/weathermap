@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.service.userservice.dao.UserMapper">
-    <resultMap id="userInfo" type="com.service.userservice.dao.User">
-        <result column="ID" jdbcType="INTEGER" property="id" />
-        <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
-        <result column="TEL_NUM" jdbcType="VARCHAR" property="telNum" />
-        <result column="FOCUS_CITY" jdbcType="VARCHAR" property="focusCity" />
-    </resultMap>
+	<resultMap id="userInfo"
+		type="com.service.userservice.dao.User">
+		<result column="ID" jdbcType="INTEGER" property="id" />
+		<result column="USER_NAME" jdbcType="VARCHAR"
+			property="userName" />
+		<result column="TEL_NUM" jdbcType="VARCHAR" property="telNum" />
+		<result column="FOCUS_CITY" jdbcType="VARCHAR"
+			property="focusCity" />
+	</resultMap>
 
-    <sql id="all_column">
-        ID, USER_NAME, TEL_NUM, FOCUS_CITY
-    </sql>
+	<sql id="all_column">
+		ID, USER_NAME, TEL_NUM, FOCUS_CITY
+	</sql>
 
-    <insert id="createUser" parameterType="com.service.userservice.dao.User">
-        insert into T_USER (
-        <include refid="all_column" />
-        )
-        values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
-        #{telNum,jdbcType=VARCHAR},#{focusCity,jdbcType=VARCHAR})
-    </insert>
+	<insert id="createUser"
+		parameterType="com.service.userservice.dao.User">
+		insert into T_USER (
+		<include refid="all_column" />
+		)
+		values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+		#{telNum,jdbcType=VARCHAR},#{focusCity,jdbcType=VARCHAR})
+	</insert>
 
-    <select id="getUserInfo" parameterType="java.lang.String"
-        resultMap="userInfo">
-        select
-        <include refid="all_column" />
-        from T_USER where USER_NAME = #{0,jdbcType=VARCHAR}
-    </select>
+	<select id="getUserInfo" parameterType="java.lang.String"
+		resultMap="userInfo">
+		select
+		<include refid="all_column" />
+		from T_USER where USER_NAME = #{0,jdbcType=VARCHAR}
+	</select>
+
+	<update id="modifyUser"
+		parameterType="com.service.userservice.dao.User">
+		update T_USER
+		set
+		TEL_NUM = #{telNum}
+		where USER_NAME = #{userName}
+	</update>
+	
+	<update id="modifyFocus"
+		parameterType="com.service.userservice.dao.User">
+		update T_USER
+		set
+		FOCUS_CITY = #{focusCity}
+		where USER_NAME = #{userName}
+	</update>
 </mapper>

@@ -23,27 +23,56 @@ public class UserServiceDelegate {
 		return 200;
 	}
 
-	public int modifyUser(String user, String telNum) {
-		logger.info("user {} modify.", user);
-		return 0;
+	public int modifyUser(String userName, String telNum) {
+		User user = userMapper.getUserInfo(userName);
+		if (user != null) {
+			user.setTelNum(telNum);
+			userMapper.modifyUser(user);
+			logger.info("modify user {} telNum {}.", userName, telNum);
+		}
+		return 200;
 	}
 
-	public int addFocus(String user, String city) {
-		logger.info("user {} add focus {}.", user, city);
-		return 0;
+	public int addFocus(String userName, String city) {
+		User user = userMapper.getUserInfo(userName);
+		if (user != null) {
+			user.setFocusCity(user.getFocusCity() + "," + city);
+			userMapper.modifyFocus(user);
+			logger.info("user {} add focus {}.", userName, city);
+		}
+		return 200;
 	}
 
-	public int delFocus(String user, String city) {
-		logger.info("user {} add delfocus {}.", user, city);
-		return 0;
+	public int delFocus(String userName, String city) {
+		User user = userMapper.getUserInfo(userName);
+		if (user != null) {
+			String oldFocus = user.getFocusCity();
+			if (null != oldFocus) {
+				String[] cities = oldFocus.split(",");
+				String newFocus = "";
+				for (String c : cities) {
+					if (!city.equals(c)) {
+						newFocus = c + "," + newFocus;
+					}
+					else {
+						logger.info("user {} delete focus {}.", userName, city);
+					}
+				}
+				user.setFocusCity(newFocus);
+				userMapper.modifyFocus(user);
+				
+			}
+		}
+		return 200;
 	}
 
 	public String getFocus(String userName) {
-		logger.info("user {} get focus {}.", userName);
+		String focus = "";
 		User user = userMapper.getUserInfo(userName);
 		if (user != null) {
-			return user.getFocusCity();
+			focus = user.getFocusCity();
 		}
-		return "DEFAULT";
+		logger.info("user {} get focus {}.", userName, focus);
+		return focus;
 	}
 }
