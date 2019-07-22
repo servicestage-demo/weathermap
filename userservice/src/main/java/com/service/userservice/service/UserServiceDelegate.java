@@ -51,7 +51,7 @@ public class UserServiceDelegate {
 				String[] cities = oldFocus.split(",");
 				String newFocus = "";
 				for (String c : cities) {
-					if (!city.equals(c)) {
+					if (!city.equals(c) && !c.isEmpty()) {
 						newFocus = c + "," + newFocus;
 					}
 					else {
