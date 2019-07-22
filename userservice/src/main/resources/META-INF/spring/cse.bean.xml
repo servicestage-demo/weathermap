@@ -18,7 +18,7 @@
 		<property name="driverClassName"
 			value="${db.driverClassName:com.mysql.jdbc.Driver}" />
 		<property name="url"
-			value="db.url:jdbc:mysql://${RELATIONAL_DATABASE_HOST}:${RELATIONAL_DATABASE_PORT}/weathermap_user_db?useSSL=false" />
+			value="jdbc:mysql://${RELATIONAL_DATABASE_HOST}:${RELATIONAL_DATABASE_PORT}/weathermap_user_db?useSSL=false" />
 		<property name="username" value="${RELATIONAL_DATABASE_DB_USER}" />
 		<property name="password" value="${RELATIONAL_DATABASE_PASSWORD}" />
 	</bean>
