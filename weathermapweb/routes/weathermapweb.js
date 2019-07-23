@@ -10,10 +10,8 @@ router.get('/', function (req, res, next) {
     console.log(proxy_host + ':' + proxy_port);
     console.log(req.query.city + ", " + req.query.type);
     var opt = {
-        host: proxy_host,
-        port: proxy_port,
         method: 'GET',
-        path: 'http://' + service_addr + '/fusionweather/show?city=' + req.query.city,
+        path: 'http://' + service_addr + '/rest/fusionweather/show?city=' + req.query.city,
         headers: {}
     };
     if (req.query.user) {
