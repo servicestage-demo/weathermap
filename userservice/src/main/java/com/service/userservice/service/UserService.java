@@ -45,7 +45,7 @@ public class UserService implements IUser {
 
 	@RequestMapping(value = "/getfocus", produces = { "application/json" }, method = RequestMethod.GET)
 	@Override
-	public String getFocus(@RequestParam(value = "user", required = true) String user) {
+	public String[] getFocus(@RequestParam(value = "user", required = true) String user) {
 		return userServiceDelegate.getFocus(user);
 	}
 

@@ -10,5 +10,5 @@ public interface IUser {
 	
 	int delFocus(String user, String city);
 	
-	String getFocus(String user);
+	String[] getFocus(String user);
 }

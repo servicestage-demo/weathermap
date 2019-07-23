@@ -11,6 +11,8 @@ import com.service.userservice.dao.UserMapper;
 @Component
 public class UserServiceDelegate {
 	private final static Logger logger = LoggerFactory.getLogger(UserServiceDelegate.class);
+	
+	private final static String SEPARATOR = ",";
 
 	@Autowired
 	private UserMapper userMapper;
@@ -36,7 +38,7 @@ public class UserServiceDelegate {
 	public int addFocus(String userName, String city) {
 		User user = userMapper.getUserInfo(userName);
 		if (user != null) {
-			user.setFocusCity(user.getFocusCity() + "," + city);
+			user.setFocusCity(user.getFocusCity() + SEPARATOR + city);
 			userMapper.modifyFocus(user);
 			logger.info("user {} add focus {}.", userName, city);
 		}
@@ -48,31 +50,30 @@ public class UserServiceDelegate {
 		if (user != null) {
 			String oldFocus = user.getFocusCity();
 			if (null != oldFocus) {
-				String[] cities = oldFocus.split(",");
+				String[] cities = oldFocus.split(SEPARATOR);
 				String newFocus = "";
 				for (String c : cities) {
 					if (!city.equals(c) && !c.isEmpty()) {
-						newFocus = c + "," + newFocus;
-					}
-					else {
+						newFocus = c + SEPARATOR + newFocus;
+					} else {
 						logger.info("user {} delete focus {}.", userName, city);
 					}
 				}
 				user.setFocusCity(newFocus);
 				userMapper.modifyFocus(user);
-				
+
 			}
 		}
 		return 200;
 	}
 
-	public String getFocus(String userName) {
+	public String[] getFocus(String userName) {
 		String focus = "";
 		User user = userMapper.getUserInfo(userName);
 		if (user != null) {
 			focus = user.getFocusCity();
 		}
 		logger.info("user {} get focus {}.", userName, focus);
-		return focus;
+		return focus == null ? new String[0] : focus.split(SEPARATOR);
 	}
 }

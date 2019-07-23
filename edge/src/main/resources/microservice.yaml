@@ -18,6 +18,14 @@ cse:
   #monitor:
     #client:
       #serverUri: https://cse.cn-north-1.myhuaweicloud.com:443
+  http:
+    dispatcher:
+      edge:
+        default:
+          enabled: true
+          prefix: rest
+          withVersion: false
+          prefixSegmentCount: 1
   rest:
     address: 0.0.0.0:13080
   handler:

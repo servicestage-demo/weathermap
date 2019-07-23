@@ -90,6 +90,13 @@ h4 {color:black;}
     color: #FF0000;
 }
 
+.uvi-my-favorite {
+    font-style: italic;
+    font-size: smaller;
+    font-weight: bolder;
+    color: #FF0000;
+}
+
 .beta-line {
     background-color: #f8f8f8;
 }

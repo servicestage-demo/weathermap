@@ -98,6 +98,13 @@
                 achieveAllWeatherData($scope.searchModel.cityNameInput);
             }
         };
+		
+		$scope.searchFavorite = {
+            searchFavoriteCity: function (val) {
+                $location.search("city", val);
+                achieveAllWeatherData(val);
+            }
+        };
 
         $scope.temperatureTypeModel = {
             dataText: "°C",
