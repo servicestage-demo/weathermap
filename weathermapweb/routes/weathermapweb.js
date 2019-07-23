@@ -4,14 +4,16 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    var proxy_host = process.env.HTTP_PROXY_HOST || '127.0.0.1';
-    var proxy_port = process.env.HTTP_PROXY_PORT || '30101'; // 13092
-    var service_addr = process.env.SERVICE_ADDR || 'rest/fusionweather'
+    var proxy_host = process.env.HTTP_PROXY_HOST || 'service-edge.default.svc.cluster.local';
+    var proxy_port = process.env.HTTP_PROXY_PORT || '13080'; // 13092
+
     console.log(proxy_host + ':' + proxy_port);
     console.log(req.query.city + ", " + req.query.type);
     var opt = {
+        host: proxy_host,
+        port: proxy_port,
         method: 'GET',
-        path: 'http://' + service_addr + '/rest/fusionweather/show?city=' + req.query.city,
+        path: '/rest/fusionweather/show?city=' + req.query.city,
         headers: {}
     };
     if (req.query.user) {
