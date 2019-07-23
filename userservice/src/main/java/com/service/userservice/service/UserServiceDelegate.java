@@ -17,12 +17,12 @@ public class UserServiceDelegate {
 	@Autowired
 	private UserMapper userMapper;
 
-	public int register(String userName, String telNum) {
-		logger.info("user {} register.", userName);
+	public String register(String userName, String telNum) {
 		if (userMapper.getUserInfo(userName) == null) {
 			userMapper.createUser(new User().setUserName(userName).setTelNum(telNum).setFocusCity(""));
+			logger.info("user {} register.", userName);
 		}
-		return 200;
+		return userName;
 	}
 
 	public int modifyUser(String userName, String telNum) {

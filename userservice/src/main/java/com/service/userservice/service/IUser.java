@@ -2,7 +2,7 @@ package com.service.userservice.service;
 
 public interface IUser {
 	
-	int register(String user, String telNum);
+	String register(String user, String telNum);
 	
 	int modifyUser(String user, String telNum);
 	
