@@ -9,14 +9,16 @@ import com.service.userservice.dao.User;
 import com.service.userservice.dao.UserMapper;
 
 @Component
-public class UserServiceDelegate {
-	private final static Logger logger = LoggerFactory.getLogger(UserServiceDelegate.class);
+public class UserServiceDelegate implements IUser {
 	
+	private final static Logger logger = LoggerFactory.getLogger(UserServiceDelegate.class);
+
 	private final static String SEPARATOR = ",";
 
 	@Autowired
 	private UserMapper userMapper;
 
+	@Override
 	public String register(String userName, String telNum) {
 		if (userMapper.getUserInfo(userName) == null) {
 			userMapper.createUser(new User().setUserName(userName).setTelNum(telNum).setFocusCity(""));
@@ -25,6 +27,7 @@ public class UserServiceDelegate {
 		return userName;
 	}
 
+	@Override
 	public int modifyUser(String userName, String telNum) {
 		User user = userMapper.getUserInfo(userName);
 		if (user != null) {
@@ -35,6 +38,7 @@ public class UserServiceDelegate {
 		return 200;
 	}
 
+	@Override
 	public int addFocus(String userName, String city) {
 		User user = userMapper.getUserInfo(userName);
 		if (user != null) {
@@ -45,6 +49,7 @@ public class UserServiceDelegate {
 		return 200;
 	}
 
+	@Override
 	public int delFocus(String userName, String city) {
 		User user = userMapper.getUserInfo(userName);
 		if (user != null) {
@@ -67,6 +72,7 @@ public class UserServiceDelegate {
 		return 200;
 	}
 
+	@Override
 	public String[] getFocus(String userName) {
 		String focus = "";
 		User user = userMapper.getUserInfo(userName);
