@@ -286,7 +286,7 @@
     };
 
     function achieveAllWeatherData(v_c, flag) {
-      var vCityName = v_c || "shenzhen";
+      var vCityName = v_c || "Shenzhen";
       if (flag !== "click") {
         if (!$location.search().city) {
           $location.search("city", vCityName);
@@ -304,7 +304,8 @@
       }).then(
         function(response) {
           for (var i = 0; i < $scope.collectionData.length; i++) {
-            if ($scope.collectionData[i] === vCityName) {
+			 
+            if (angular.lowercase($scope.collectionData[i]) === angular.lowercase(vCityName)) {
               $scope.isCollected = true;
               break;
             } else {
@@ -549,7 +550,13 @@
         timeout: 20000
       }).then(
         function(response) {
-          getCollection($scope.user);
+          //getCollection($scope.user);
+		  $scope.isCollected = false;
+		  for (var i = 0; i < $scope.collectionData.length; i++) {
+			if (angular.lowercase($scope.globalData.city) === angular.lowercase($scope.collectionData[i])) {
+				$scope.collectionData.splice(i, 1);
+			}
+		  }
         },
         function(err) {
           console.log(err);
@@ -560,14 +567,16 @@
     // 增加收藏
     $scope.addCollect = function() {
       $http({
-        method: "GET",
+        method: "POST",
         url: "/ui/rest/userservice/addfocus",
         params: { user: $scope.user, city: $scope.globalData.city },
         headers: { demo: "2.0" },
         timeout: 20000
       }).then(
         function(response) {
-          getCollection($scope.user);
+          //getCollection($scope.user);
+		  $scope.isCollected = true;
+		  $scope.collectionData.push($scope.globalData.city);
         },
         function(err) {
           console.log(err);
