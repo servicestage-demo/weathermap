@@ -8,6 +8,10 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var weathermapweb = require('./routes/weathermapweb');
+var collection = require('./routes/collection');
+var register = require('./routes/register');
+var addCollection = require('./routes/addCollect');
+var delCollection = require('./routes/delCollect');
 
 var app = express();
 
@@ -27,6 +31,10 @@ app.use(express.static(path.join(__dirname, 'views')));
 
 app.use('/index', index);
 app.use('/weathermapweb/ui/fusionweatherdata', weathermapweb);
+app.use('/ui/rest/userservice/getfocus', collection);
+app.use('/ui/rest/userservice/register', register);
+app.use('/ui/rest/userservice/addfocus', addCollection);
+app.use('/ui/rest/userservice/delfocus', delCollection);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

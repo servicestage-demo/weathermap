@@ -3,22 +3,27 @@ var http = require('http');
 var router = express.Router();
 
 /* GET home page. */
-router.get("/", function (req, res, next) {
-    console.log('xxxxx');
+
+router.post("/", function (req, res, next) {
+    console.log(req);
     var proxy_host = process.env.HTTP_PROXY_HOST || 'service-edge.default.svc.cluster.local';
     var proxy_port = process.env.HTTP_PROXY_PORT || '13080'; // 13092
+
+    console.log(proxy_host + ':' + proxy_port);
+    console.log(req.query.city + ", " + req.query.type);
 
     var opt = {
         host: proxy_host,
         port: proxy_port,
-        method: 'GET',
-        path: '/rest/fusionweather/show?city=' + req.query.city,
+        method: 'POST',
+        path: '/rest/userservice/addfocus?city=' + req.query.city + '&user=' + req.query.user,
         headers: {
         }
     };
+
     if (proxy_host === '127.0.0.1') {
-        opt.path = '/mock/fusion_beta.json';
-    }
+        opt.path = '/mock/addCollection.json';
+    } 
 
     console.log("path: " + opt.path);
     console.log("host: " + opt.host);
@@ -39,4 +44,6 @@ router.get("/", function (req, res, next) {
     });
     request.end();
 });
+
+
 module.exports = router;

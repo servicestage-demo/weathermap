@@ -32,5 +32,6 @@ var globalLanguageZh = {
   "pressureCurve": "气压曲线",
   "prePieChart": "降水量饼图",
   "preCurve": "降水量曲线",
-  "noData": "获取天气数据失败"
+  "noData": "获取天气数据失败",
+  "getAuthFailed": "获取用户信息失败"
 }
