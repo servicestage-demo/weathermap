@@ -30,6 +30,9 @@
                                ng-click="temperatureTypeModel.changeClickFn('F')">°F</label>
                     </div>
                 </div>
+				<div class="" style="margin-top:26px;float:right;">
+					<span ng-bind="user"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -95,10 +98,10 @@
                     <div>
                         <span><img ng-src="./theme/image/{{weatherTableModel.image}}.png"></span>
                         <span class="weather-temp-txt weather-text-shadow" ng-bind="weatherTableModel.temp"></span>
-						<span ng-click="cancelCollect()" ng-if="isCollected" style="cursor: pointer;">
+						<span ng-click="cancelCollect()" ng-if="isCollected" style="cursor: pointer;" tooltip-placement="top" uib-tooltip="收藏">
                                 <img ng-src="./theme/image/add.png">
                             </span>
-                            <span ng-click="addCollect()" ng-if="!isCollected" style="cursor: pointer;">
+                            <span ng-click="addCollect()" ng-if="!isCollected" style="cursor: pointer;" tooltip-placement="top" uib-tooltip="取消收藏">
                                 <img ng-src="./theme/image/notadd.png">
                             </span>
                     </div>
