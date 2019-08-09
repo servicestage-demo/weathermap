@@ -11,7 +11,7 @@
 4、	weather微服务提供指定城市当前的天气情况，基于java语言开发  
 5、	weather-beta微服务是weather微服务的新版本，新增了查询指定城市紫外线情况的功能，基于java语言开发  
   
-基于ServiceStage部署的操作指导请参考： [ServiceComb on ServiceStage](https://support.huaweicloud.com/bestpractice-servicestage/servicestage_bestpractice_0108.html)
+基于ServiceStage部署的操作指导请参考： [ServiceComb on ServiceStage](https://support.huaweicloud.com/bestpractice-servicestage/servicestage_bestpractice_0108.html)  
 天气预报运行起来后的界面如下：  
   
 ![](https://github.com/servicestage-demo/weathermap/blob/master/weathermap.JPG)
