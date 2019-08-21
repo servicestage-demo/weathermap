@@ -21,3 +21,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+/.idea
+*.iml
+/logs
+/edge/target/
+/forecast/target/
+/fusionweather/target/
+/imagetag/target/
+/weather/target/
+/weather-beta/target/
+/target/
