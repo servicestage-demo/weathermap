@@ -22,9 +22,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.huawei.paas.cse</groupId>
-				<artifactId>cse-dependency</artifactId>
-				<version>${cse.version}</version>
+				<groupId>org.apache.servicecomb</groupId>
+				<artifactId>java-chassis-dependencies</artifactId>
+				<version>${servicecomb.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -33,14 +33,26 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.huawei.paas.cse</groupId>
-			<artifactId>cse-solution-service-engine</artifactId>
+			<groupId>org.apache.servicecomb</groupId>
+			<artifactId>solution-basic</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.servicecomb</groupId>
-			<artifactId>handler-publickey-auth</artifactId>
+			<artifactId>servicestage-environment</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.servicecomb</groupId>
+			<artifactId>registry-service-center</artifactId>
+		</dependency>
+		<!-- using log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
