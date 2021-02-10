@@ -94,7 +94,7 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
-                                <zip destfile="target/${build.finalName}.zip">
+                                <zip destfile="target/${project.build.finalName}.zip">
                                     <zipfileset dir="target/lib" prefix="lib"/>
                                     <zipfileset dir="target" includes="*.jar"/>
                                     <zipfileset dir="." prefix=""

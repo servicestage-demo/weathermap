@@ -65,6 +65,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.2.RELEASE</version>
                 <configuration>
                     <mainClass>com.service.fusionweather.FusionweatherApplication</mainClass>
                 </configuration>
@@ -84,28 +85,6 @@
                 <version>3.0.0</version>
             </plugin>
 
-            <!-- findbugs -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
-                <configuration>
-                    <effort>Low</effort>
-                    <threshold>Low</threshold>
-                    <failOnError>false</failOnError>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                    <findbugsXmlOutputDirectory>target/findbugs</findbugsXmlOutputDirectory>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>run-findbugs</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 </project>
