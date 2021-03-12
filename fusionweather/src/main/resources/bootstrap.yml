@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: fusionweather
+  cloud:
+    servicecomb:
+      discovery:
+        version: 0.0.2
+      config:
+        serverAddr: https://cse.cn-north-7.myhuaweicloud.com
+        # serverAddr: http://127.0.0.1:30113

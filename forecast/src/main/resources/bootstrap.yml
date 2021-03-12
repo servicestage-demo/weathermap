@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: weathermap
+  cloud:
+    servicecomb:
+      discovery:
+        version: 0.0.2
+      config:
+        serverAddr: https://cse.cn-north-7.myhuaweicloud.com

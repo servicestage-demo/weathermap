@@ -1,19 +1,20 @@
 package com.service.weather.controller;
 
-import com.service.weather.entity.objective.CurrentWeatherSummary;
-import org.apache.servicecomb.provider.rest.common.RestSchema;
+import javax.ws.rs.core.MediaType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.core.MediaType;
+import com.service.weather.entity.objective.CurrentWeatherSummary;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:26:36.166+08:00")
 
-@RestSchema(schemaId = "weather")
+@RestController
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
 public class WeatherImpl {
     private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);

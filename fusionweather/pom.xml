@@ -22,9 +22,23 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.apache.servicecomb</groupId>
-                <artifactId>java-chassis-dependencies</artifactId>
-                <version>${servicecomb.version}</version>
+                <groupId>com.huaweicloud</groupId>
+                <artifactId>spring-cloud-huawei-dependencies</artifactId>
+                <version>${spring-cloud-huawei.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -33,22 +47,34 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>solution-basic</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>spring-cloud-starter-huawei-servicecomb-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>spring-cloud-starter-huawei-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.servicecomb</groupId>
-            <artifactId>servicestage-environment</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>registry-service-center</artifactId>
+            <artifactId>provider-springmvc</artifactId>
         </dependency>
         <!-- using log4j -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
@@ -87,4 +113,5 @@
 
         </plugins>
     </build>
+
 </project>

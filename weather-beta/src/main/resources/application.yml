@@ -1,0 +1,16 @@
+server:
+  port: 13093
+
+spring:
+  application:
+    name: weather
+  cloud:
+    servicecomb:
+      discovery:
+        enabled: true
+        # address: http://127.0.0.1:30100
+        address: https://cse.cn-north-7.myhuaweicloud.com
+        serviceName: ${spring.application.name}
+        appName: weathermap
+        version: 0.0.3
+        watch: false

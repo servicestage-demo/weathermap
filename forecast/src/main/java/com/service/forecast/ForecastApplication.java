@@ -1,7 +1,9 @@
 package com.service.forecast;
 
-import org.apache.servicecomb.foundation.common.utils.BeanUtils;
-import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.context.annotation.PropertySource;
 
 /**
  * <一句话功能简述>
@@ -12,11 +14,12 @@ import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
  * @see [相关类/方法]
  * @since [产品/模块版本]
  */
+@SpringBootApplication
+@PropertySource("classpath:config/httpproxy.properties")
 public class ForecastApplication
 {
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
-        Log4jUtils.init();
-        BeanUtils.init();
+        SpringApplication.run(ForecastApplication.class);
     }
 }

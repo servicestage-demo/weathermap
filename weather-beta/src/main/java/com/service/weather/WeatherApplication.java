@@ -1,13 +1,13 @@
 package com.service.weather;
 
-import org.apache.servicecomb.foundation.common.utils.BeanUtils;
-import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
-public class WeatherApplication
-{
-    public static void main(String[] args) throws Exception
-    {
-        Log4jUtils.init();
-        BeanUtils.init();
+@SpringBootApplication
+@PropertySource("classpath:config/httpproxy.properties")
+public class WeatherApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(WeatherApplication.class);
     }
 }

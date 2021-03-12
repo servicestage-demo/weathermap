@@ -8,14 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WeatherImplDelegate
-{
-	@Autowired
-	CacheUtil cacheUtil;
-	
-    public CurrentWeatherSummary showCurrentWeather(String c)
-    {
-        String city = StringUtils.isNotBlank(c) ? c : "shenzhen,cn";
-        return cacheUtil.getCurrentWeatherSummary(city);
-    }
+public class WeatherImplDelegate {
+  @Autowired
+  CacheUtil cacheUtil;
+
+  public CurrentWeatherSummary showCurrentWeather(String c) {
+    String city = StringUtils.isNotBlank(c) ? c : "shenzhen,cn";
+    return cacheUtil.getCurrentWeatherSummary(city);
+  }
 }

@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: weather
+  cloud:
+    servicecomb:
+      discovery:
+        version: 0.0.3
+      config:
+        serverAddr: https://cse.cn-north-7.myhuaweicloud.com
+        # serverAddr: http://127.0.0.1:30113

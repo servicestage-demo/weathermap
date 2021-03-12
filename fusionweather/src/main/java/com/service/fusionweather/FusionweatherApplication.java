@@ -1,13 +1,11 @@
 package com.service.fusionweather;
 
-import org.apache.servicecomb.foundation.common.utils.BeanUtils;
-import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class FusionweatherApplication
-{
-    public static void main(String[] args) throws Exception
-    {
-        Log4jUtils.init();
-        BeanUtils.init();
+@SpringBootApplication
+public class FusionweatherApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(FusionweatherApplication.class, args);
     }
 }

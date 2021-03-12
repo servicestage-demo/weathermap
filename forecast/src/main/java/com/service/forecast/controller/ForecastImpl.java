@@ -1,22 +1,23 @@
 package com.service.forecast.controller;
 
-import com.netflix.config.DynamicIntProperty;
-import com.netflix.config.DynamicPropertyFactory;
-import com.service.forecast.entity.objective.ForecastSummary;
-import org.apache.servicecomb.provider.rest.common.RestSchema;
+import javax.annotation.PostConstruct;
+import javax.ws.rs.core.MediaType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
-import javax.ws.rs.core.MediaType;
+import com.netflix.config.DynamicIntProperty;
+import com.netflix.config.DynamicPropertyFactory;
+import com.service.forecast.entity.objective.ForecastSummary;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:16:52.801+08:00")
 
-@RestSchema(schemaId = "forecast")
+@RestController
 @RequestMapping(path = "/forecast", produces = MediaType.APPLICATION_JSON)
 public class ForecastImpl {
     private static final Logger LOGGER = LoggerFactory.getLogger(ForecastImpl.class);
