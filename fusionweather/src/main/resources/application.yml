@@ -9,7 +9,7 @@ spring:
       discovery:
         enabled: true
         # address: http://127.0.0.1:30100
-        address: https://cse.cn-north-7.myhuaweicloud.com
+        address: https://cse.cn-north-1.myhuaweicloud.com
         servieName: ${spring.appliction.name}
         appName: weathermap
         version: 0.0.2

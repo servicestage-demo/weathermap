@@ -1,11 +1,11 @@
 package com.service.weather.controller;
 
-import com.service.weather.entity.objective.CurrentWeatherSummary;
-import com.service.weather.util.CacheUtil;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.service.weather.entity.objective.CurrentWeatherSummary;
+import com.service.weather.util.CacheUtil;
 
 @Component
 public class WeatherImplDelegate {

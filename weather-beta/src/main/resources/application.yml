@@ -8,8 +8,7 @@ spring:
     servicecomb:
       discovery:
         enabled: true
-        # address: http://127.0.0.1:30100
-        address: https://cse.cn-north-7.myhuaweicloud.com
+        address: https://cse.cn-north-1.myhuaweicloud.com
         serviceName: ${spring.application.name}
         appName: weathermap
         version: 0.0.3
