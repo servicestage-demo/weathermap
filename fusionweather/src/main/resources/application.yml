@@ -14,3 +14,26 @@ spring:
         appName: weathermap
         version: 0.0.2
         watch: false
+      routeRule:
+        weather: |
+          - precedence: 2
+            match:
+              headers:
+                region:
+                  regex: 'region[0-9]'
+                  caseInsensitive: false
+                type:
+                  exact: gray
+            route:
+              - weight: 100
+                tags:
+                  version: 0.0.3
+                  app: weathermap
+          - precedence: 1
+            route:
+              - weight: 20
+                tags:
+                  version: 0.03
+              - weight: 80
+                tags:
+                  version: 0.02
