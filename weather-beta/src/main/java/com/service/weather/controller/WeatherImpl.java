@@ -17,16 +17,17 @@ import com.service.weather.entity.objective.CurrentWeatherSummary;
 @RestController
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
 public class WeatherImpl {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
 
-    @Autowired
-    private WeatherImplDelegate userCurrentweatherdataDelegate;
+  @Autowired
+  private WeatherImplDelegate userCurrentweatherdataDelegate;
 
-    @RequestMapping(value = "/show",
-            produces = {"application/json"},
-            method = RequestMethod.GET)
-    public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city, @RequestParam(value = "user", required = false) String user) {
-        LOGGER.info("showCurrentWeather() is called, city = [{}], user = [{}]", city, user);
-        return userCurrentweatherdataDelegate.showCurrentWeather(city);
-    }
+  @RequestMapping(value = "/show",
+      produces = {"application/json"},
+      method = RequestMethod.GET)
+  public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city,
+      @RequestParam(value = "user", required = false) String user) {
+    LOGGER.info("showCurrentWeather() is called, city = [{}], user = [{}]", city, user);
+    return userCurrentweatherdataDelegate.showCurrentWeather(city);
+  }
 }

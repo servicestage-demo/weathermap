@@ -1,8 +1,7 @@
 # Edge Service
 
--  expose **Forecast Service** and **Weather Service** interface
+- expose **Forecast Service** and **Weather Service** interface
 - add auth header（{"auth": "weather"}）
-
 
 ## Access Edge Service
 

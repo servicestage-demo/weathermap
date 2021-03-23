@@ -1,10 +1,15 @@
+server:
+  port: 10392
+
 spring:
   application:
     name: fusionweather
   cloud:
     servicecomb:
       discovery:
-        version: 0.0.2
+        enabled: true
+        # address: http://127.0.0.1:30100
+        address: https://cse.cn-north-1.myhuaweicloud.com
       config:
         serverAddr: https://cse.cn-north-1.myhuaweicloud.com
 

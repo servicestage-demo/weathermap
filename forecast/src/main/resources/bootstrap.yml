@@ -1,10 +1,15 @@
+server:
+  port: 13091
+
 spring:
   application:
     name: weathermap
   cloud:
     servicecomb:
       discovery:
-        version: 0.0.2
+        enabled: true
+        address: https://cse.cn-north-1.myhuaweicloud.com
+        # address: http://127.0.0.1:30100
       config:
         serverAddr: https://cse.cn-north-1.myhuaweicloud.com
 

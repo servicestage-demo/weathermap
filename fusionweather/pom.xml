@@ -1,117 +1,105 @@
 <?xml version="1.0"?>
 <project
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <parent>
-        <groupId>dev</groupId>
-        <artifactId>weathermap</artifactId>
-        <version>1.0.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.service</groupId>
-    <artifactId>fusionweather</artifactId>
-    <packaging>jar</packaging>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>fusionweather</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>com.service.fusionweather.FusionweatherApplication</mainClass>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.3.2.RELEASE</version>
+      </plugin>
 
-    <name>fusionweather</name>
-    <url>http://maven.apache.org</url>
+      <!-- check style -->
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.0.0</version>
+      </plugin>
 
-    <properties>
-        <demo.main>com.service.fusionweather.FusionweatherApplication</demo.main>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.huaweicloud</groupId>
-                <artifactId>spring-cloud-huawei-dependencies</artifactId>
-                <version>${spring-cloud-huawei.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
+      <groupId>com.huaweicloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-huawei-config</artifactId>
+      <groupId>com.huaweicloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
+      <groupId>com.huaweicloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>provider-springmvc</artifactId>
+      <groupId>org.apache.servicecomb</groupId>
+    </dependency>
+    <!-- using log4j -->
+    <dependency>
+      <artifactId>slf4j-log4j12</artifactId>
+      <groupId>org.slf4j</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.huaweicloud</groupId>
-            <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.huaweicloud</groupId>
-            <artifactId>spring-cloud-starter-huawei-servicecomb-discovery</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.huaweicloud</groupId>
-            <artifactId>spring-cloud-starter-huawei-config</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.huaweicloud</groupId>
-            <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>provider-springmvc</artifactId>
-        </dependency>
-        <!-- using log4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+        <artifactId>spring-cloud-huawei-dependencies</artifactId>
+        <groupId>com.huaweicloud</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud-huawei.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud.version}</version>
+      </dependency>
     </dependencies>
+  </dependencyManagement>
+  <groupId>com.service</groupId>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.2.RELEASE</version>
-                <configuration>
-                    <mainClass>com.service.fusionweather.FusionweatherApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+  <modelVersion>4.0.0</modelVersion>
+  <name>fusionweather</name>
 
-            <!-- check style -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
+  <packaging>jar</packaging>
 
-        </plugins>
-    </build>
+  <parent>
+    <artifactId>weathermap</artifactId>
+    <groupId>dev</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <properties>
+    <demo.main>com.service.fusionweather.FusionweatherApplication</demo.main>
+  </properties>
+
+  <url>http://maven.apache.org</url>
 
 </project>

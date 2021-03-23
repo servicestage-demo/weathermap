@@ -2,15 +2,12 @@ package com.service.fusionweather.controller;
 
 import org.junit.Test;
 
-public class TestFusionweatherdata
-{
+public class TestFusionweatherdata {
 
-    FusionweatherImpl fusionweatherdataImpl = new FusionweatherImpl();
+  FusionweatherImpl fusionweatherdataImpl = new FusionweatherImpl();
 
-    @Test
-    public void testhelloworld()
-    {
+  @Test
+  public void testhelloworld() {
 
-    }
-
+  }
 }

@@ -20,36 +20,36 @@ import com.service.forecast.entity.objective.ForecastSummary;
 @RestController
 @RequestMapping(path = "/forecast", produces = MediaType.APPLICATION_JSON)
 public class ForecastImpl {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ForecastImpl.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ForecastImpl.class);
 
-    @Autowired
-    private ForecastImplDelegate userForecastweatherdataDelegate;
+  @Autowired
+  private ForecastImplDelegate userForecastweatherdataDelegate;
 
-    private int latencyTime = 0;
+  private int latencyTime = 0;
 
-    @PostConstruct
-    public void init() {
-        LOGGER.info("Init success");
-        DynamicIntProperty latency = DynamicPropertyFactory.getInstance().getIntProperty("latency", 0);
-        latency.addCallback(() -> {
-            latencyTime = latency.get();
-            LOGGER.info("Latency time change to {}", latencyTime);
-        });
-        latencyTime = latency.get();
+  @PostConstruct
+  public void init() {
+    LOGGER.info("Init success");
+    DynamicIntProperty latency = DynamicPropertyFactory.getInstance().getIntProperty("latency", 0);
+    latency.addCallback(() -> {
+      latencyTime = latency.get();
+      LOGGER.info("Latency time change to {}", latencyTime);
+    });
+    latencyTime = latency.get();
+  }
+
+  @RequestMapping(value = "/show",
+      produces = {"application/json"},
+      method = RequestMethod.GET)
+  public ForecastSummary getForecast(@RequestParam(value = "city", required = true) String city) {
+    LOGGER.info("getForecast() is called, city = [{}]", city);
+    if (latencyTime > 0) {
+      try {
+        Thread.sleep(latencyTime);
+      } catch (Exception e) {
+
+      }
     }
-
-    @RequestMapping(value = "/show",
-            produces = {"application/json"},
-            method = RequestMethod.GET)
-    public ForecastSummary getForecast(@RequestParam(value = "city", required = true) String city) {
-        LOGGER.info("getForecast() is called, city = [{}]", city);
-        if (latencyTime > 0) {
-            try {
-                Thread.sleep(latencyTime);
-            } catch (Exception e) {
-
-            }
-        }
-        return userForecastweatherdataDelegate.showForecastWeather(city);
-    }
+    return userForecastweatherdataDelegate.showForecastWeather(city);
+  }
 }

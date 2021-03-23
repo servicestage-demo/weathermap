@@ -20,36 +20,37 @@ import com.service.weather.entity.objective.CurrentWeatherSummary;
 @RestController
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
 public class WeatherImpl {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
 
-    @Autowired
-    private WeatherImplDelegate userCurrentweatherdataDelegate;
+  @Autowired
+  private WeatherImplDelegate userCurrentweatherdataDelegate;
 
-    private int latencyTime = 0;
+  private int latencyTime = 0;
 
-    @PostConstruct
-    public void init() {
-        LOGGER.info("Init success");
-        DynamicIntProperty latency = DynamicPropertyFactory.getInstance().getIntProperty("latency", 0);
-        latency.addCallback(() -> {
-            latencyTime = latency.get();
-            LOGGER.info("Latency time change to {}", latencyTime);
-        });
-        latencyTime = latency.get();
+  @PostConstruct
+  public void init() {
+    LOGGER.info("Init success");
+    DynamicIntProperty latency = DynamicPropertyFactory.getInstance().getIntProperty("latency", 0);
+    latency.addCallback(() -> {
+      latencyTime = latency.get();
+      LOGGER.info("Latency time change to {}", latencyTime);
+    });
+    latencyTime = latency.get();
+  }
+
+  @RequestMapping(value = "/show",
+      produces = {"application/json"},
+      method = RequestMethod.GET)
+  public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city,
+      @RequestParam(value = "user", required = false) String user) {
+    if (latencyTime > 0) {
+      try {
+        Thread.sleep(latencyTime);
+      } catch (Exception e) {
+
+      }
     }
-
-    @RequestMapping(value = "/show",
-            produces = {"application/json"},
-            method = RequestMethod.GET)
-    public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city, @RequestParam(value = "user", required = false) String user) {
-        if (latencyTime > 0) {
-            try {
-                Thread.sleep(latencyTime);
-            } catch (Exception e) {
-
-            }
-        }
-        LOGGER.info("showCurrentWeather() is called, city = [{}], user = [{}]", city, user);
-        return userCurrentweatherdataDelegate.showCurrentWeather(city);
-    }
+    LOGGER.info("showCurrentWeather() is called, city = [{}], user = [{}]", city, user);
+    return userCurrentweatherdataDelegate.showCurrentWeather(city);
+  }
 }

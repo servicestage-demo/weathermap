@@ -1,38 +1,33 @@
 package com.service.forecast.entity.original;
 
+import javax.annotation.Generated;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.annotation.Generated;
-
 @Generated("com.robohorse.robopojogenerator")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Wind
-{
+public class Wind {
 
-    @JsonProperty("deg")
-    private double deg;
+  @JsonProperty("deg")
+  private double deg;
 
-    @JsonProperty("speed")
-    private double speed;
+  @JsonProperty("speed")
+  private double speed;
 
-    public double getDeg()
-    {
-        return deg;
-    }
+  public double getDeg() {
+    return deg;
+  }
 
-    public void setDeg(double deg)
-    {
-        this.deg = deg;
-    }
+  public void setDeg(double deg) {
+    this.deg = deg;
+  }
 
-    public double getSpeed()
-    {
-        return speed;
-    }
+  public double getSpeed() {
+    return speed;
+  }
 
-    public void setSpeed(double speed)
-    {
-        this.speed = speed;
-    }
+  public void setSpeed(double speed) {
+    this.speed = speed;
+  }
 }

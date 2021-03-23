@@ -1,135 +1,135 @@
 <?xml version="1.0"?>
 <project
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <parent>
-        <groupId>dev</groupId>
-        <artifactId>weathermap</artifactId>
-        <version>1.0.0</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.service</groupId>
-    <artifactId>edge</artifactId>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>edge</artifactId>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <outputDirectory>target/lib</outputDirectory>
+            </configuration>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.10</version>
+      </plugin>
 
-    <packaging>jar</packaging>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <target>
+                <zip destfile="target/${project.build.finalName}.zip">
+                  <zipfileset dir="target/lib" prefix="lib"/>
+                  <zipfileset dir="target" includes="*.jar"/>
+                  <zipfileset dir="." includes="startup.sh"
+                    prefix=""/>
+                  <zipfileset dir="." includes="shutdown.sh"
+                    prefix=""/>
+                  <zipfileset dir="." includes="startup.bat"
+                    prefix=""/>
+                </zip>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <id>make-vm-zip</id>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <version>1.8</version>
+      </plugin>
 
-    <name>edge</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <demo.main>com.service.edge.EdgeApplication</demo.main>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.apache.servicecomb</groupId>
-                <artifactId>java-chassis-dependencies</artifactId>
-                <version>${servicecomb.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>./lib/</classpathPrefix>
+              <mainClass>${demo.main}</mainClass>
+            </manifest>
+            <manifestEntries>
+              <Class-Path>.</Class-Path>
+            </manifestEntries>
+          </archive>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.6</version>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <artifactId>solution-basic</artifactId>
+      <groupId>org.apache.servicecomb</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>servicestage-environment</artifactId>
+      <groupId>org.apache.servicecomb</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>registry-service-center</artifactId>
+      <groupId>org.apache.servicecomb</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>edge-core</artifactId>
+      <groupId>org.apache.servicecomb</groupId>
+    </dependency>
+    <!-- using log4j -->
+    <dependency>
+      <artifactId>log4j</artifactId>
+      <groupId>log4j</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>slf4j-log4j12</artifactId>
+      <groupId>org.slf4j</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>solution-basic</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>servicestage-environment</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>registry-service-center</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.servicecomb</groupId>
-            <artifactId>edge-core</artifactId>
-        </dependency>
-        <!-- using log4j -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+      <dependency>
+        <artifactId>java-chassis-dependencies</artifactId>
+        <groupId>org.apache.servicecomb</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${servicecomb.version}</version>
+      </dependency>
     </dependencies>
+  </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>target/lib</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+  <groupId>com.service</groupId>
 
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <id>make-vm-zip</id>
-                        <phase>package</phase>
-                        <configuration>
-                            <target>
-                                <zip destfile="target/${project.build.finalName}.zip">
-                                    <zipfileset dir="target/lib" prefix="lib"/>
-                                    <zipfileset dir="target" includes="*.jar"/>
-                                    <zipfileset dir="." prefix=""
-                                                includes="startup.sh"/>
-                                    <zipfileset dir="." prefix=""
-                                                includes="shutdown.sh"/>
-                                    <zipfileset dir="." prefix=""
-                                                includes="startup.bat"/>
-                                </zip>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+  <modelVersion>4.0.0</modelVersion>
+  <name>edge</name>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>./lib/</classpathPrefix>
-                            <mainClass>${demo.main}</mainClass>
-                        </manifest>
-                        <manifestEntries>
-                            <Class-Path>.</Class-Path>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <packaging>jar</packaging>
+
+  <parent>
+    <artifactId>weathermap</artifactId>
+    <groupId>dev</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <properties>
+    <demo.main>com.service.edge.EdgeApplication</demo.main>
+  </properties>
+
+  <url>http://maven.apache.org</url>
 </project>

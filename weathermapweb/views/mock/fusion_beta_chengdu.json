@@ -25,20 +25,21 @@
     "cityName": "Chengdu",
     "coordinatesLon": 104.0613,
     "coordinatesLat": 30.6766,
-    "dateList": [{
-      "date": 1527735600,
-      "image": "04d",
-      "dateTxt": "2018-05-31 03:00:00",
-      "temperatureMax": 26.1,
-      "weather": "overcast clouds",
-      "temperature": 26.1,
-      "temperatureMin": 23.48,
-      "humidity": 62.0,
-      "pressure": 967.75,
-      "windSpeed": 2.06,
-      "cloudsDeg": 100.0,
-      "rain3h": 0.0
-    },
+    "dateList": [
+      {
+        "date": 1527735600,
+        "image": "04d",
+        "dateTxt": "2018-05-31 03:00:00",
+        "temperatureMax": 26.1,
+        "weather": "overcast clouds",
+        "temperature": 26.1,
+        "temperatureMin": 23.48,
+        "humidity": 62.0,
+        "pressure": 967.75,
+        "windSpeed": 2.06,
+        "cloudsDeg": 100.0,
+        "rain3h": 0.0
+      },
       {
         "date": 1527746400,
         "image": "04d",
@@ -570,7 +571,8 @@
         "windSpeed": 1.27,
         "cloudsDeg": 68.0,
         "rain3h": 0.0
-      }],
+      }
+    ],
     "currentTime": 1527735350890
   }
 }

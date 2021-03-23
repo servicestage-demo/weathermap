@@ -1,10 +1,14 @@
+server:
+  port: 13093
+
 spring:
   application:
     name: weather
   cloud:
     servicecomb:
       discovery:
-        version: 0.0.3
+        enabled: true
+        address: https://cse.cn-north-1.myhuaweicloud.com
       config:
         serverAddr: https://cse.cn-north-1.myhuaweicloud.com
 

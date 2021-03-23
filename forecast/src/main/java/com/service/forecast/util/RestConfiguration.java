@@ -18,52 +18,52 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfiguration {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(RestConfiguration.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(RestConfiguration.class);
 
-	@Value("${proxy.enabled}")
-	private boolean proxyEnable = false;
+  @Value("${proxy.enabled}")
+  private boolean proxyEnable = false;
 
-	@Value("${proxy.host}")
-	private String proxyHost;
+  @Value("${proxy.host}")
+  private String proxyHost;
 
-	@Value("${proxy.port}")
-	private int proxyPort;
+  @Value("${proxy.port}")
+  private int proxyPort;
 
-	@Value("${proxy.user}")
-	private String proxyUser;
+  @Value("${proxy.user}")
+  private String proxyUser;
 
-	@Value("${proxy.password}")
-	private String proxyPassworld;
+  @Value("${proxy.password}")
+  private String proxyPassworld;
 
-	@Value("${rest.readtimeout}")
-	private int restReadTimeout;
+  @Value("${rest.readtimeout}")
+  private int restReadTimeout;
 
-	@Value("${rest.connecttimeout}")
-	private int restConnectionTimeout;
+  @Value("${rest.connecttimeout}")
+  private int restConnectionTimeout;
 
-	@Bean
-	public HttpComponentsClientHttpRequestFactory httpClientFactory() {
-		HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
+  @Bean
+  public HttpComponentsClientHttpRequestFactory httpClientFactory() {
+    HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
 
-		httpRequestFactory.setConnectTimeout(restConnectionTimeout);
-		httpRequestFactory.setReadTimeout(restReadTimeout);
+    httpRequestFactory.setConnectTimeout(restConnectionTimeout);
+    httpRequestFactory.setReadTimeout(restReadTimeout);
 
-		if (proxyEnable) {
-			CredentialsProvider credsProvider = new BasicCredentialsProvider();
-			credsProvider.setCredentials(new AuthScope(proxyHost, proxyPort),
-					new UsernamePasswordCredentials(proxyUser, proxyPassworld));
-			HttpClient httpClient = HttpClientBuilder.create().setProxy(new HttpHost(proxyHost, proxyPort))
-					.setDefaultCredentialsProvider(credsProvider).disableCookieManagement().build();
-			httpRequestFactory.setHttpClient(httpClient);
+    if (proxyEnable) {
+      CredentialsProvider credsProvider = new BasicCredentialsProvider();
+      credsProvider.setCredentials(new AuthScope(proxyHost, proxyPort),
+          new UsernamePasswordCredentials(proxyUser, proxyPassworld));
+      HttpClient httpClient = HttpClientBuilder.create().setProxy(new HttpHost(proxyHost, proxyPort))
+          .setDefaultCredentialsProvider(credsProvider).disableCookieManagement().build();
+      httpRequestFactory.setHttpClient(httpClient);
 
-			LOGGER.info("http proxy enabled");
-		}
+      LOGGER.info("http proxy enabled");
+    }
 
-		return httpRequestFactory;
-	}
+    return httpRequestFactory;
+  }
 
-	@Bean("restProxyTemplate")
-	public RestTemplate getRestTemplate(HttpComponentsClientHttpRequestFactory httpClientFactory) {
-		return new RestTemplate(httpClientFactory);
-	}
+  @Bean("restProxyTemplate")
+  public RestTemplate getRestTemplate(HttpComponentsClientHttpRequestFactory httpClientFactory) {
+    return new RestTemplate(httpClientFactory);
+  }
 }

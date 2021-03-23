@@ -14,25 +14,25 @@ import org.slf4j.LoggerFactory;
 
 public class AuthFilter implements HttpServerFilter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthFilter.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(AuthFilter.class);
 
-    @Override
-    public int getOrder() {
-        return 1000;
-    }
+  @Override
+  public int getOrder() {
+    return 1000;
+  }
 
-    @Override
-    public Response afterReceiveRequest(Invocation invocation, HttpServletRequestEx requestEx) {
-        LOGGER.info("Edge service has received a request.");
-        if (StringUtils.isBlank(requestEx.getHeader("auth"))) {
-            LOGGER.error("Auth header is needed.");
-            return Response.failResp(ExceptionFactory.create(new HttpStatus(401, "auth: weather."),
-                    new CommonExceptionData("Auth header is needed (auth: weather).")));
-        }
-        return null;
+  @Override
+  public Response afterReceiveRequest(Invocation invocation, HttpServletRequestEx requestEx) {
+    LOGGER.info("Edge service has received a request.");
+    if (StringUtils.isBlank(requestEx.getHeader("auth"))) {
+      LOGGER.error("Auth header is needed.");
+      return Response.failResp(ExceptionFactory.create(new HttpStatus(401, "auth: weather."),
+          new CommonExceptionData("Auth header is needed (auth: weather).")));
     }
+    return null;
+  }
 
-    @Override
-    public void beforeSendResponse(Invocation invocation, HttpServletResponseEx responseEx) {
-    }
+  @Override
+  public void beforeSendResponse(Invocation invocation, HttpServletResponseEx responseEx) {
+  }
 }

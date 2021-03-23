@@ -1,276 +1,236 @@
 package com.service.weather.entity.objective;
 
-public class CurrentWeatherSummary
-{
+public class CurrentWeatherSummary {
 
-    /**
-     * cityName : HaiKou
-     * temperature : 26
-     * image : 04d
-     * date : 1509433200
-     * weather : broken clouds
-     * windSpeed : 7
-     * cloudiness : broken clouds
-     * cloudsDeg : 75
-     * pressure : 1016
-     * humidity : 69
-     * sunrise : 1509403182
-     * sunset : 1509444267
-     * coordinatesLat : 20.05
-     * coordinatesLon : 110.34
-     */
+  /**
+   * cityName : HaiKou
+   * temperature : 26
+   * image : 04d
+   * date : 1509433200
+   * weather : broken clouds
+   * windSpeed : 7
+   * cloudiness : broken clouds
+   * cloudsDeg : 75
+   * pressure : 1016
+   * humidity : 69
+   * sunrise : 1509403182
+   * sunset : 1509444267
+   * coordinatesLat : 20.05
+   * coordinatesLon : 110.34
+   */
 
-    private String cityName;
+  private String cityName;
 
-    private String country;
+  private String country;
 
-    private double temperature;
+  private double temperature;
 
-    private String image;
+  private String image;
 
-    private long date;
+  private long date;
 
-    private String weather;
+  private String weather;
 
-    private double windSpeed;
+  private double windSpeed;
 
-    private String cloudiness;
+  private String cloudiness;
 
-    private double cloudsDeg;
+  private double cloudsDeg;
 
-    private double pressure;
+  private double pressure;
 
-    private double humidity;
+  private double humidity;
 
-    private long sunrise;
+  private long sunrise;
 
-    private long sunset;
+  private long sunset;
 
-    private double coordinatesLat;
+  private double coordinatesLat;
 
-    private double coordinatesLon;
+  private double coordinatesLon;
 
-    private long uviDate;
+  private long uviDate;
 
-    private String uviDateISO;
+  private String uviDateISO;
 
-    private double uviValue;
+  private double uviValue;
 
-    private long currentTime = System.currentTimeMillis();
+  private long currentTime = System.currentTimeMillis();
 
-    public String getCityName()
-    {
-        return cityName;
-    }
+  public String getCityName() {
+    return cityName;
+  }
 
-    public void setCityName(String cityName)
-    {
-        this.cityName = cityName;
-    }
+  public void setCityName(String cityName) {
+    this.cityName = cityName;
+  }
 
-    public String getCountry()
-    {
-        return country;
-    }
+  public String getCountry() {
+    return country;
+  }
 
-    public void setCountry(String country)
-    {
-        this.country = country;
-    }
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    public double getTemperature()
-    {
-        return temperature;
-    }
+  public double getTemperature() {
+    return temperature;
+  }
 
-    public void setTemperature(double temperature)
-    {
-        this.temperature = temperature;
-    }
+  public void setTemperature(double temperature) {
+    this.temperature = temperature;
+  }
 
-    public String getImage()
-    {
-        return image;
-    }
+  public String getImage() {
+    return image;
+  }
 
-    public void setImage(String image)
-    {
-        this.image = image;
-    }
+  public void setImage(String image) {
+    this.image = image;
+  }
 
-    public long getDate()
-    {
-        return date;
-    }
+  public long getDate() {
+    return date;
+  }
 
-    public void setDate(long date)
-    {
-        this.date = date;
-    }
+  public void setDate(long date) {
+    this.date = date;
+  }
 
-    public String getWeather()
-    {
-        return weather;
-    }
+  public String getWeather() {
+    return weather;
+  }
 
-    public void setWeather(String weather)
-    {
-        this.weather = weather;
-    }
+  public void setWeather(String weather) {
+    this.weather = weather;
+  }
 
-    public double getWindSpeed()
-    {
-        return windSpeed;
-    }
+  public double getWindSpeed() {
+    return windSpeed;
+  }
 
-    public void setWindSpeed(double windSpeed)
-    {
-        this.windSpeed = windSpeed;
-    }
+  public void setWindSpeed(double windSpeed) {
+    this.windSpeed = windSpeed;
+  }
 
-    public String getCloudiness()
-    {
-        return cloudiness;
-    }
+  public String getCloudiness() {
+    return cloudiness;
+  }
 
-    public void setCloudiness(String cloudiness)
-    {
-        this.cloudiness = cloudiness;
-    }
+  public void setCloudiness(String cloudiness) {
+    this.cloudiness = cloudiness;
+  }
 
-    public double getCloudsDeg()
-    {
-        return cloudsDeg;
-    }
+  public double getCloudsDeg() {
+    return cloudsDeg;
+  }
 
-    public void setCloudsDeg(double cloudsDeg)
-    {
-        this.cloudsDeg = cloudsDeg;
-    }
+  public void setCloudsDeg(double cloudsDeg) {
+    this.cloudsDeg = cloudsDeg;
+  }
 
-    public double getPressure()
-    {
-        return pressure;
-    }
+  public double getPressure() {
+    return pressure;
+  }
 
-    public void setPressure(double pressure)
-    {
-        this.pressure = pressure;
-    }
+  public void setPressure(double pressure) {
+    this.pressure = pressure;
+  }
 
-    public double getHumidity()
-    {
-        return humidity;
-    }
+  public double getHumidity() {
+    return humidity;
+  }
 
-    public void setHumidity(double humidity)
-    {
-        this.humidity = humidity;
-    }
+  public void setHumidity(double humidity) {
+    this.humidity = humidity;
+  }
 
-    public long getSunrise()
-    {
-        return sunrise;
-    }
+  public long getSunrise() {
+    return sunrise;
+  }
 
-    public void setSunrise(long sunrise)
-    {
-        this.sunrise = sunrise;
-    }
+  public void setSunrise(long sunrise) {
+    this.sunrise = sunrise;
+  }
 
-    public long getSunset()
-    {
-        return sunset;
-    }
+  public long getSunset() {
+    return sunset;
+  }
 
-    public void setSunset(long sunset)
-    {
-        this.sunset = sunset;
-    }
+  public void setSunset(long sunset) {
+    this.sunset = sunset;
+  }
 
-    public double getCoordinatesLat()
-    {
-        return coordinatesLat;
-    }
+  public double getCoordinatesLat() {
+    return coordinatesLat;
+  }
 
-    public void setCoordinatesLat(double coordinatesLat)
-    {
-        this.coordinatesLat = coordinatesLat;
-    }
+  public void setCoordinatesLat(double coordinatesLat) {
+    this.coordinatesLat = coordinatesLat;
+  }
 
-    public double getCoordinatesLon()
-    {
-        return coordinatesLon;
-    }
+  public double getCoordinatesLon() {
+    return coordinatesLon;
+  }
 
-    public void setCoordinatesLon(double coordinatesLon)
-    {
-        this.coordinatesLon = coordinatesLon;
-    }
+  public void setCoordinatesLon(double coordinatesLon) {
+    this.coordinatesLon = coordinatesLon;
+  }
 
-    public long getUviDate()
-    {
-        return uviDate;
-    }
+  public long getUviDate() {
+    return uviDate;
+  }
 
-    public void setUviDate(long uviDate)
-    {
-        this.uviDate = uviDate;
-    }
+  public void setUviDate(long uviDate) {
+    this.uviDate = uviDate;
+  }
 
-    public String getUviDateISO()
-    {
-        return uviDateISO;
-    }
+  public String getUviDateISO() {
+    return uviDateISO;
+  }
 
-    public void setUviDateISO(String uviDateISO)
-    {
-        this.uviDateISO = uviDateISO;
-    }
+  public void setUviDateISO(String uviDateISO) {
+    this.uviDateISO = uviDateISO;
+  }
 
-    public double getUviValue()
-    {
-        return uviValue;
-    }
+  public double getUviValue() {
+    return uviValue;
+  }
 
-    public void setUviValue(double uviValue)
-    {
-        this.uviValue = uviValue;
-    }
+  public void setUviValue(double uviValue) {
+    this.uviValue = uviValue;
+  }
 
-    public long getCurrentTime()
-    {
-        return currentTime;
-    }
+  public long getCurrentTime() {
+    return currentTime;
+  }
 
-    public void setCurrentTime(long currentTime)
-    {
-        this.currentTime = currentTime;
-    }
+  public void setCurrentTime(long currentTime) {
+    this.currentTime = currentTime;
+  }
 
-    @Override
-    public String toString()
-    {
-        return "CurrentWeatherSummary{" +
-                "cityName='" + cityName + '\'' +
-                ", country='" + country + '\'' +
-                ", temperature=" + temperature +
-                ", image='" + image + '\'' +
-                ", date=" + date +
-                ", weather='" + weather + '\'' +
-                ", windSpeed=" + windSpeed +
-                ", cloudiness='" + cloudiness + '\'' +
-                ", cloudsDeg=" + cloudsDeg +
-                ", pressure=" + pressure +
-                ", humidity=" + humidity +
-                ", sunrise=" + sunrise +
-                ", sunset=" + sunset +
-                ", coordinatesLat=" + coordinatesLat +
-                ", coordinatesLon=" + coordinatesLon +
-                ", uviDate=" + uviDate +
-                ", uviDateISO='" + uviDateISO + '\'' +
-                ", uviValue=" + uviValue +
-                ", currentTime=" + currentTime +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "CurrentWeatherSummary{" +
+        "cityName='" + cityName + '\'' +
+        ", country='" + country + '\'' +
+        ", temperature=" + temperature +
+        ", image='" + image + '\'' +
+        ", date=" + date +
+        ", weather='" + weather + '\'' +
+        ", windSpeed=" + windSpeed +
+        ", cloudiness='" + cloudiness + '\'' +
+        ", cloudsDeg=" + cloudsDeg +
+        ", pressure=" + pressure +
+        ", humidity=" + humidity +
+        ", sunrise=" + sunrise +
+        ", sunset=" + sunset +
+        ", coordinatesLat=" + coordinatesLat +
+        ", coordinatesLon=" + coordinatesLon +
+        ", uviDate=" + uviDate +
+        ", uviDateISO='" + uviDateISO + '\'' +
+        ", uviValue=" + uviValue +
+        ", currentTime=" + currentTime +
+        '}';
+  }
 }

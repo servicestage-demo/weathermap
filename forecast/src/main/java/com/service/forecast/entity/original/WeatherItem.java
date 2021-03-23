@@ -1,64 +1,55 @@
 package com.service.forecast.entity.original;
 
+import javax.annotation.Generated;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.annotation.Generated;
-
 @Generated("com.robohorse.robopojogenerator")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class WeatherItem
-{
+public class WeatherItem {
 
-    @JsonProperty("icon")
-    private String icon;
+  @JsonProperty("icon")
+  private String icon;
 
-    @JsonProperty("description")
-    private String description;
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("main")
-    private String main;
+  @JsonProperty("main")
+  private String main;
 
-    @JsonProperty("id")
-    private int id;
+  @JsonProperty("id")
+  private int id;
 
-    public String getIcon()
-    {
-        return icon;
-    }
+  public String getIcon() {
+    return icon;
+  }
 
-    public void setIcon(String icon)
-    {
-        this.icon = icon;
-    }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
 
-    public String getDescription()
-    {
-        return description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setDescription(String description)
-    {
-        this.description = description;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public String getMain()
-    {
-        return main;
-    }
+  public String getMain() {
+    return main;
+  }
 
-    public void setMain(String main)
-    {
-        this.main = main;
-    }
+  public void setMain(String main) {
+    this.main = main;
+  }
 
-    public int getId()
-    {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(int id)
-    {
-        this.id = id;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 }

@@ -16,19 +16,18 @@ import com.service.fusionweather.entity.FusionWeatherSummary;
 
 @RestController
 @RequestMapping(path = "/fusionweather", produces = MediaType.APPLICATION_JSON)
-public class FusionweatherImpl
-{
-    private static final Logger LOGGER = LoggerFactory.getLogger(FusionweatherImpl.class);
+public class FusionweatherImpl {
+  private static final Logger LOGGER = LoggerFactory.getLogger(FusionweatherImpl.class);
 
-    @Autowired
-    private FusionweatherImplDelegate userFusionweatherdataDelegate;
+  @Autowired
+  private FusionweatherImplDelegate userFusionweatherdataDelegate;
 
-    @RequestMapping(value = "/show",
-            produces = { "application/json" },
-            method = RequestMethod.GET)
-    public FusionWeatherSummary show(@RequestParam(value = "city", required = true) String city, @RequestParam(value = "user", required = false) String user)
-    {
-        LOGGER.info("show() is called, city = [{}], user = [{}]", city, user);
-        return userFusionweatherdataDelegate.showFusionWeather(city, user);
-    }
+  @RequestMapping(value = "/show",
+      produces = {"application/json"},
+      method = RequestMethod.GET)
+  public FusionWeatherSummary show(@RequestParam(value = "city", required = true) String city,
+      @RequestParam(value = "user", required = false) String user) {
+    LOGGER.info("show() is called, city = [{}], user = [{}]", city, user);
+    return userFusionweatherdataDelegate.showFusionWeather(city, user);
+  }
 }

@@ -15,37 +15,33 @@ import com.service.weather.entity.objective.CurrentWeatherSummary;
  * Cache
  */
 @Component
-public class CacheUtil
-{
-    private static final Logger LOGGER = LoggerFactory.getLogger(CacheUtil.class);
+public class CacheUtil {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CacheUtil.class);
 
-    private static final int TIME_SPAN = 1800 * 1000;
+  private static final int TIME_SPAN = 1800 * 1000;
 
-    private Map<String, CurrentWeatherSummary> cacheMap = new ConcurrentHashMap<String, CurrentWeatherSummary>();
+  private Map<String, CurrentWeatherSummary> cacheMap = new ConcurrentHashMap<String, CurrentWeatherSummary>();
 
-    @Autowired
-    private OpenWeatherMapClient openWeatherMapClient;
-    
-    public CurrentWeatherSummary getCurrentWeatherSummary(String kk)
-    {
-        CurrentWeatherSummary su = cacheMap.computeIfAbsent(kk, (nm) -> {
-            LOGGER.info("Achieve the forecast weather data from OpenWeatherMap");
-            return openWeatherMapClient.showCurrentWeather(nm);
-        });
+  @Autowired
+  private OpenWeatherMapClient openWeatherMapClient;
 
-        if (System.currentTimeMillis() - su.getCurrentTime() > TIME_SPAN)
-        {
-            su = cacheMap.computeIfPresent(kk, (nm, vl) -> {
-                LOGGER.info("Retrieve the forecast weather data from OpenWeatherMap");
-                return openWeatherMapClient.showCurrentWeather(nm);
-            });
-        }
+  public CurrentWeatherSummary getCurrentWeatherSummary(String kk) {
+    CurrentWeatherSummary su = cacheMap.computeIfAbsent(kk, (nm) -> {
+      LOGGER.info("Achieve the forecast weather data from OpenWeatherMap");
+      return openWeatherMapClient.showCurrentWeather(nm);
+    });
 
-        if (StringUtils.isBlank(su.getCityName()))
-        {
-            cacheMap.remove(kk);
-        }
-
-        return su;
+    if (System.currentTimeMillis() - su.getCurrentTime() > TIME_SPAN) {
+      su = cacheMap.computeIfPresent(kk, (nm, vl) -> {
+        LOGGER.info("Retrieve the forecast weather data from OpenWeatherMap");
+        return openWeatherMapClient.showCurrentWeather(nm);
+      });
     }
+
+    if (StringUtils.isBlank(su.getCityName())) {
+      cacheMap.remove(kk);
+    }
+
+    return su;
+  }
 }
