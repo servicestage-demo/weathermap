@@ -7,11 +7,12 @@ spring:
   cloud:
     servicecomb:
       discovery:
-        enabled: true
-        # address: http://127.0.0.1:30100
-        address: https://cse.cn-north-1.myhuaweicloud.com
+        address: http://127.0.0.1:30100
+        version: 0.0.2
+        # address: https://cse.cn-north-1.myhuaweicloud.com
       config:
-        serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+        # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+        serverAddr: http://127.0.0.1:30113
 
 # TODO: 使用微服务引擎专业版部署之前，需要配置 AK/SK
 #  spring:

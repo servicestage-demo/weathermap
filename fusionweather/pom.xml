@@ -3,6 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>fusionweather</artifactId>
+
   <build>
     <plugins>
       <plugin>
@@ -30,34 +31,6 @@
 
     </plugins>
   </build>
-  <dependencies>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-config</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>provider-springmvc</artifactId>
-      <groupId>org.apache.servicecomb</groupId>
-    </dependency>
-    <!-- using log4j -->
-    <dependency>
-      <artifactId>slf4j-log4j12</artifactId>
-      <groupId>org.slf4j</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>junit</artifactId>
-      <groupId>junit</groupId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -83,6 +56,34 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
+      <groupId>com.huaweicloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-huawei-config</artifactId>
+      <groupId>com.huaweicloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
+      <groupId>com.huaweicloud</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>slf4j-log4j12</artifactId>
+      <groupId>org.slf4j</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   <groupId>com.service</groupId>
 
   <modelVersion>4.0.0</modelVersion>
