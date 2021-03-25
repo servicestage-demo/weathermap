@@ -5,12 +5,12 @@ spring:
   cloud:
     servicecomb:
       discovery:
-        address: http://127.0.0.1:30100
         version: 0.0.2
-        # address: https://cse.cn-north-1.myhuaweicloud.com
+        address: https://cse.cn-north-1.myhuaweicloud.com
+        # address: http://127.0.0.1:30100
       config:
-        serverAddr: http://127.0.0.1:30113
-        # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+        # serverAddr: http://127.0.0.1:30113
+        serverAddr: https://cse.cn-north-1.myhuaweicloud.com
 servicecomb:
   matchGroup:
     getWeather: |
