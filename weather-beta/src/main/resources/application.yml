@@ -1,7 +1,11 @@
+server:
+  port: 13093
+
 spring:
   cloud:
     servicecomb:
       discovery:
+        enabled: true
         serviceName: ${spring.application.name}
         appName: weathermap
         version: 0.0.3

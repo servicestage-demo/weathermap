@@ -11,3 +11,14 @@ spring:
       config:
         # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
         serverAddr: http://127.0.0.1:30113
+servicecomb:
+  matchGroup:
+    getWeather: |
+      matches:
+        - apiPath:
+            prefix: "/weather"
+  retry:
+    getWeather: |
+      maxAttempts: 5
+      retryOnResponseStatus: 502
+      waitDuration: 1000

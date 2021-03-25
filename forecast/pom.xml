@@ -27,25 +27,29 @@
         <groupId>org.apache.maven.plugins</groupId>
         <version>3.1.1</version>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
 
     </plugins>
   </build>
   <dependencies>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
       <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
       <groupId>com.huaweicloud</groupId>
     </dependency>
     <dependency>
-      <artifactId>spring-cloud-starter-huawei-servicecomb-discovery</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-config</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
-      <groupId>com.huaweicloud</groupId>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
     </dependency>
     <!-- using log4j -->
     <dependency>

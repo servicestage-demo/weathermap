@@ -29,6 +29,9 @@ public class FusionweatherImplDelegate {
   }
 
   private CurrentWeatherSummary achieveCurrentWeatherSummary(String city, String user) {
+    /*final String url = !StringUtils.isEmpty(user) && user.equalsIgnoreCase("beta") ?
+        "http://127.0.0.1:13090/weather/show?city=" + city :
+        "http://127.0.0.1:13093/weather/show?city=" + city;*/
     final String url = !StringUtils.isEmpty(user) && user.equalsIgnoreCase("beta") ?
         "http://weather/weather/show?city=" + city :
         "http://weather/weather/show?city=" + city;
@@ -44,7 +47,8 @@ public class FusionweatherImplDelegate {
   }
 
   private ForecastWeatherSummary achieveForecastWeatherSummary(String city) {
-    final String url = "http://forcast/forecast/show?city=" + city;
+    // final String url = "http://127.0.0.1:13091/forecast/show?city=" + city;
+    final String url = "http://forecast/forecast/show?city=" + city;
     // final String url = "cse://forecast/forecast/show?city=" + city;
     ForecastWeatherSummary su;
     try {

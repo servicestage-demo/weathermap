@@ -1,5 +1,3 @@
-server:
-  port: 13093
 
 spring:
   application:
@@ -7,10 +5,12 @@ spring:
   cloud:
     servicecomb:
       discovery:
-        enabled: true
-        address: https://cse.cn-north-1.myhuaweicloud.com
+        # address: https://cse.cn-north-1.myhuaweicloud.com
+        address:  http://127.0.0.1:30100
+        version: 0.0.3
       config:
-        serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+        # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+        serverAddr: http://127.0.0.1:30113
 
 # TODO: 使用微服务引擎专业版部署之前，需要配置 AK/SK
 #  spring:

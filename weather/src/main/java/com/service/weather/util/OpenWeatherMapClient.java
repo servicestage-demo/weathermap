@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jmx.access.InvocationFailureException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -64,11 +65,13 @@ public class OpenWeatherMapClient {
   private RestTemplate restTemplate;
 
   public CurrentWeatherSummary showCurrentWeather(String city) {
+
     city = StringUtils.isNotBlank(city) ? city : DEFAULT;
 
     CurrentWeatherSummary summary = new CurrentWeatherSummary();
     try {
       WeatherData weatherData = null;
+
       if (mockEnabled) {
         weatherData = MOCK_WEATHER_DATA;
 
@@ -108,9 +111,10 @@ public class OpenWeatherMapClient {
         summary.setCoordinatesLat(weatherData.getCoord().getLat());
       }
     } catch (Exception e) {
-      LOGGER.error("Failed to get the current weather data from OpenWeatherMap with " + city, e);
+      // LOGGER.error("Failed to get the current weather data from OpenWeatherMap with " + city, e);
+      LOGGER.error("Failed to get the current weather data from OpenWeatherMap with " + city);
 
-      swtichURL();
+      // swtichURL();
     }
 
     return summary;

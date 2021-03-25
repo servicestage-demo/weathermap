@@ -1,2 +1,4 @@
-package com.service.weather.controller;public class TestCircuitBreaker {
+package com.service.weather.controller;
+
+public class TestCircuitBreaker {
 }

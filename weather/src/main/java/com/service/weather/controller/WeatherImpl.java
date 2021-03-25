@@ -1,11 +1,14 @@
 package com.service.weather.controller;
 
+import java.util.Random;
+
 import javax.annotation.PostConstruct;
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.netflix.config.DynamicIntProperty;
 import com.netflix.config.DynamicPropertyFactory;
 import com.service.weather.entity.objective.CurrentWeatherSummary;
+import com.service.weather.util.CustomException;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:26:36.166+08:00")
 
@@ -24,6 +28,12 @@ public class WeatherImpl {
 
   @Autowired
   private WeatherImplDelegate userCurrentweatherdataDelegate;
+
+  @Value("${randomException.enabled}")
+  private boolean allowRandomException = false;
+
+  @Value("${timewait.enabled}")
+  private boolean timewait = false;
 
   private int latencyTime = 0;
 
@@ -43,6 +53,11 @@ public class WeatherImpl {
       method = RequestMethod.GET)
   public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city,
       @RequestParam(value = "user", required = false) String user) {
+
+    if (allowRandomException) {
+      throw new CustomException();
+    }
+
     if (latencyTime > 0) {
       try {
         Thread.sleep(latencyTime);

@@ -1,26 +1,50 @@
+#spring:
+#  application:
+#    name: forecast
+#  cloud:
+#    servicecomb:
+#      discovery:
+#        version: 0.0.2
+#      config:
+#        # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+#        serverAddr: http://127.0.0.1:30113
+#
+## TODO: 使用微服务引擎专业版部署之前，需要配置 AK/SK
+##  spring:
+##    cloud:
+##      servicecomb:
+##        config:
+##          credentials:
+##            enable: true
+##            accessKey:
+##            secretKey:
+##            akskCustomCipher: default
+##            project:
+
 server:
   port: 13091
 
 spring:
   application:
-    name: weathermap
+    name: forecast
   cloud:
     servicecomb:
       discovery:
-        enabled: true
-        address: https://cse.cn-north-1.myhuaweicloud.com
-        # address: http://127.0.0.1:30100
+        watch: false
+        # address: https://cse.cn-north-1.myhuaweicloud.com
+        address: http://127.0.0.1:30100
+        version: 0.0.2
+        serviceName: ${spring.application.name}
+        appName: weathermap
       config:
-        serverAddr: https://cse.cn-north-1.myhuaweicloud.com
-
-# TODO: 使用微服务引擎专业版部署之前，需要配置 AK/SK
-#  spring:
-#    cloud:
-#      servicecomb:
-#        config:
-#          credentials:
-#            enable: true
-#            accessKey:
-#            secretKey:
-#            akskCustomCipher: default
-#            project:
+        # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
+        serverAddr: http://127.0.0.1:30113
+#servicecomb:
+#  matchGroup:
+#    demo-rateLimiting: |
+#      matches:
+#        - apiPath:
+#            prefix: "/forecast"
+#  rateLimiting:
+#    demo-rateLimiting: |
+#      rate: 0
