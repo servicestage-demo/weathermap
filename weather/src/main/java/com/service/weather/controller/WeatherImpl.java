@@ -24,6 +24,9 @@ import com.service.weather.util.CustomException;
 @RestController
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
 public class WeatherImpl {
+
+  private int calledTimes = 0;
+
   private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
 
   @Autowired
@@ -54,8 +57,13 @@ public class WeatherImpl {
   public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city,
       @RequestParam(value = "user", required = false) String user) {
 
+    calledTimes++;
+    System.out.println("has received " + calledTimes + " calls");
+
     if (allowRandomException) {
-      throw new CustomException();
+      if (calledTimes % 5 != 0) {
+        throw new CustomException();
+      }
     }
 
     if (latencyTime > 0) {
