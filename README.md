@@ -5,6 +5,7 @@
 ![](https://github.com/servicestage-demo/weathermap/blob/master/arch.JPG)
 
 上图中的天气预报是一个基于ServiceComb开发的微服务应用，可以根据用户输入的城市名称查询天气情况，其中：  
+0、 本分支為weather的springcloud版本。  
 1、 weathermapweb是一个基于node.js语言开发的界面微服务  
 2、 fusionweather微服务为界面提供数据，基于java语言开发  
 3、 forecast微服务提供指定城市未来几天天气情况预测的微服务，基于java语言开发  
