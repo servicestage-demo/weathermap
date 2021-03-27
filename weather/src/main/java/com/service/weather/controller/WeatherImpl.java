@@ -63,6 +63,8 @@ public class WeatherImpl {
     if (allowRandomException) {
       if (calledTimes % 5 != 0) {
         throw new CustomException();
+      } else {
+        calledTimes = 0;
       }
     }
 
