@@ -18,10 +18,9 @@ spring:
 #  spring:
 #    cloud:
 #      servicecomb:
-#        config:
-#          credentials:
-#            enable: true
-#            accessKey:
-#            secretKey:
-#            akskCustomCipher: default
-#            project:
+#        credentials:
+#          enable: true
+#          accessKey:
+#          secretKey:
+#          akskCustomCipher: default
+#          project:
