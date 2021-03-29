@@ -4,14 +4,15 @@
 
 ![](https://github.com/servicestage-demo/weathermap/blob/master/arch.JPG)
 
+
 上图中的天气预报是一个基于ServiceComb开发的微服务应用，可以根据用户输入的城市名称查询天气情况，其中：  
 1、	weathermapweb is a microservice based on node.js  
 2、 fusionweather provides weather data for web UI, based on java.  
-3、	forecast微服务提供指定城市未来几天天气情况预测的微服务，基于java语言开发  
-4、	weather微服务提供指定城市当前的天气情况，基于java语言开发  
-5、	weather-beta is the newer version of weather，新增了查询指定城市紫外线情况的功能，基于java语言开发
+3、 forecast service provides weather forecasts for the next few days in a specified city, based on java  
+4、 weather service provides current weather information in specified city, based on java  
+5、	weather-beta is the newer version of weather，newly added the ultraviolet rays information, based on java
 
-基于ServiceStage部署的操作指导请参考： [ServiceComb on ServiceStage](https://support.huaweicloud.com/bestpractice-servicestage/servicestage_bestpractice_0108.html)  
-天气预报运行起来后的界面如下：
+to deploy it on servicestage： [ServiceComb on ServiceStage](https://support.huaweicloud.com/bestpractice-servicestage/servicestage_bestpractice_0108.html)  
+runtime interface is as shown below：
 
 ![](https://github.com/servicestage-demo/weathermap/blob/master/weathermap.JPG)
