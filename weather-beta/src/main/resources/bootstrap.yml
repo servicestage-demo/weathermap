@@ -1,3 +1,5 @@
+server:
+  port: 13093
 
 spring:
   application:
@@ -7,18 +9,11 @@ spring:
       discovery:
         # address: https://cse.cn-north-1.myhuaweicloud.com
         address:  http://127.0.0.1:30100
+        enabled: true
+        serviceName: ${spring.application.name}
+        appName: weathermap
         version: 0.0.3
+        watch: false
       config:
         # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
         serverAddr: http://127.0.0.1:30113
-
-# TODO: 使用微服务引擎专业版部署之前，需要配置 AK/SK
-#  spring:
-#    cloud:
-#      servicecomb:
-#        credentials:
-#          enabled: true
-#          accessKey:
-#          secretKey:
-#          akskCustomCipher: default
-#          project:

@@ -18,18 +18,3 @@ spring:
         # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
         # serverAddr: http://127.0.0.1:30113
         serverAddr: https://cse.cn-east-3.myhuaweicloud.com
-      credentials:
-        enabled: true
-        accessKey: 2VTFWOVW3ADX4MJTEP9T
-        secretKey: xi6wMxN8VxTu2UwpseXVsSsTlxel5iZMZyvViBrr
-        project: cn-east-3
-        akskCustomCipher: default
-#servicecomb:
-#  matchGroup:
-#    demo-rateLimiting: |
-#      matches:
-#        - apiPath:
-#            prefix: "/forecast"
-#  rateLimiting:
-#    demo-rateLimiting: |
-#      rate: 0

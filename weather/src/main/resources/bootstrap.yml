@@ -1,3 +1,5 @@
+server:
+  port: 13090
 
 spring:
   application:
@@ -5,35 +7,13 @@ spring:
   cloud:
     servicecomb:
       discovery:
-        address: http://127.0.0.1:30100
+        enabled: true
+        serviceName: ${spring.application.name}
+        appName: weathermap
         version: 0.0.2
+        watch: false
+        address: http://127.0.0.1:30100
         # address: https://cse.cn-north-1.myhuaweicloud.com
       config:
         serverAddr: http://127.0.0.1:30113
         # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
-servicecomb:
-  matchGroup:
-    getWeather: |
-      matches:
-        - apiPath:
-            prefix: "/weather"
-#  circuitBreaker:
-#    getWeather: |
-#      failureRateThreshold: 50
-#      minimumNumberOfCalls: 5
-#      # slidingWindowType: count
-#      slidingWindowSize: 5
-  bulkhead:
-    getWeather: |
-      maxConcurrentCalls: 10
-      maxWaitDuration: 10000
-# TODO: 使用微服务引擎专业版部署之前，需要配置 AK/SK
-#  spring:
-#    cloud:
-#      servicecomb:
-#        credentials:
-#          enable: true
-#          accessKey:
-#          secretKey:
-#          akskCustomCipher: default
-#          project:
