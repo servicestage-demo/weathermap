@@ -6,7 +6,7 @@
 
 ![](https://github.com/servicestage-demo/weathermap/blob/master/arch.JPG)
 
-weather forecast shown above is a microservice applicaiton based on ServiceComb, which can check the weather of city user demand.
+weather forecast shown above is a microservice applicaiton based on ServiceComb, which can check the weather of city user demand.  
 1、	weathermapweb is a microservice based on node.js  
 2、 fusionweather provides weather data for web UI, based on java.  
 3、 forecast service provides weather forecasts for the next few days in a specified city, based on java  
