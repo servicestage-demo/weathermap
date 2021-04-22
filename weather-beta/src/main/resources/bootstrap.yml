@@ -7,13 +7,11 @@ spring:
   cloud:
     servicecomb:
       discovery:
-        # address: https://cse.cn-north-1.myhuaweicloud.com
         address:  http://127.0.0.1:30100
-        enabled: true
         serviceName: ${spring.application.name}
         appName: weathermap
         version: 0.0.3
         watch: false
       config:
-        # serverAddr: https://cse.cn-north-1.myhuaweicloud.com
-        serverAddr: http://127.0.0.1:30113
+        serverAddr: http://127.0.0.1:30110
+        serverType: kie
