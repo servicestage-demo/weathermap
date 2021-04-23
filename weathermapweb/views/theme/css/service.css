@@ -2,39 +2,241 @@ body, table {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.428571429;
-    color: #000000;
-    background-color: #FFFFFF;
+    color: #333333;
+    background-color: #ffffff;
+    margin-bottom: 20px;
 }
 
-h4 {color:black;}
-
 .topic {
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e7e7e7;
-    background-color: #f8f8f8;
+    height: 60px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 20px 0 rgba(15,20,53,0.28);
+}
+
+.dm-height-md {
+    height: 60px;
+    line-height: 60px;
+}
+
+.demo-name {
+    font-family: PingFangSC-Medium;
+    font-size: 28px;
+    color: #191F5D;
+    letter-spacing: 0.47px;
+}
+
+.topic .active {
+    background: #649BFB !important;
+    color: #FFFFFF !important;
+    border-color: #649BFB !important;
+}
+
+.topic .btn {
+    width: 75px;
+    height: 28px;
+    padding: 3px;
+}
+
+.topic .dropdown-toggle {
+    width: 70px;
+    background: #F6F7F9;
+    border-color: #E0E3EB;
+    color: #191F5D;
+}
+.display-block {
+    display: block;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.pd-left-md {
+    padding-left: 20px;
+}
+
+.mg-left-md {
+    margin-left: 15px;
+}
+
+.mg-bottom-md {
+    margin-bottom: 15px;
+}
+
+a {
+    cursor: pointer;
+}
+
+.search {
+    height: 120px;
+    background: url('../image/search_bg.jpg') #424379;
+    /* opacity: 0.8; */
+    padding: 0;
+    margin: 0;
+}
+
+.input-style {
+    width: 380px;
+    height: 50px;
+}
+
+.button-style {
+    width: 100px;
+    height: 50px;
+    background: #649BFB;
+    font-family: PingFangSC-Regular;
+    font-size: 20px;
+    color: #FFFFFF;
+    letter-spacing: 0.33px;
+    border: none;
+}
+
+.card-item-style {
+    padding: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 20px 0 rgba(192,196,235,0.30);
+    position: relative;
+}
+
+.item-title {
+    font-family: PingFangSC-Regular;
+    font-size: 18px;
+    color: #191F5D;
+    letter-spacing: 0.3px;
+}
+
+.item-title img {
+    display: inline-block;
+    margin-top: -5px;
+}
+
+.city-adress {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #7176A5;
+    letter-spacing: 0.23px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background: #F5F6FF;
+}
+
+.table-striped>tbody>tr {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #191F5D;
+    letter-spacing: 0.23px;
+}
+
+.table-style-2 td:nth-child(2), .table-style-1 td {
+    color: #7176A5;
+}
+
+.table-style-1 th {
+    padding: 0 10px !important;
+}
+
+.table-style-1 th:nth-child(2) {
+    border-left: 1px solid #cccccc;
+}
+
+.th {
+    padding: 0 10px;
+}
+
+.desc {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    color: #191F5D;
+    letter-spacing: 0;
+    line-height: 18px;
+    padding-bottom: 5px;
+}
+
+.time-style {
+    font-family: PingFangSC-Medium;
+    font-size: 14px;
+    color: #191F5D;
+    letter-spacing: 0.23px;
+}
+
+.color-def-one {
+    color: #4ebb9d;
+}
+
+.color-def-two {
+    color: #83bb4e;
+}
+
+.color-def-thread {
+    color: #c7a733;
+}
+
+.color-def-four {
+    color: #c33737;
+}
+
+.color-def-five {
+    color: #b31a8f;
+}
+
+.width-md {
+    display: inline-block;
+    width: 30px;
+}
+
+.line-height-md {
+    line-height: 20px;
 }
 
 .input-div {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    padding-top: 35px;
+    width: 480px;
+    margin: 0 auto;
 }
 
 .sub-text-div {
-    margin-bottom: 5px;
+    padding-top: 15px;
+    font-family: PingFangSC-Regular;
+    font-size: 24px;
+    color: #191F5D;
+    letter-spacing: 0.4px;
+    height: 70px;
 }
 
 .sub-tab-div {
     padding-top: 15px;
 }
 
+.sub-tab-div table td {
+    padding: 0 10px !important;
+    vertical-align: middle !important;
+    height: 60px;
+}
+
 .for-list-group-div {
     margin: 10px 5% 0 5%;
 }
 
+.for-list-group-div li {
+    text-align: center;
+    padding: 15px 0 !important;
+}
+
 .weather-temp-txt {
-    font-weight: bolder;
+    font-family: Roboto-Medium;
     font-size: 30px;
-    margin-left: 10px;
+    color: #FFFFFF;
+    letter-spacing: 0.6px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.20);
 }
 
 .middle {
@@ -50,6 +252,25 @@ h4 {color:black;}
     text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87
 }
 
+.weather-text {
+    position: absolute;
+    top: 5px;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 0.2px;
+    padding: 10px;
+}
+
+.weather-img-style {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.weather {
+    position: relative;
+}
+
 .top-button-div {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -61,8 +282,9 @@ h4 {color:black;}
 }
 
 .foot-txt-div {
-    margin: 15px 20px;
-    float: right;
+    text-align: center;
+    margin: 5px 20px;
+    /* float: right; */
     font-size: smaller;
 }
 .foot-lanuage {
@@ -80,22 +302,64 @@ h4 {color:black;}
 }
 
 .uvi-div {
-    margin-top: -15px;
+    margin-top: -10px;
+    color: #7176A5;
 }
 
 .uvi-new-span {
     font-style: italic;
     font-size: smaller;
     font-weight: bolder;
-    color: #FF0000;
+    color: #F77C47;
 }
 
-.beta-line {
+.font-smaller-color-grey {
+    font-family: Roboto-Regular;
+    font-size: 12px;
+    color: #9DA6BB;
+    letter-spacing: 0;
+    line-height: 18px;
+}
+
+.font-def-type-1 {
+    font-family: PingFangSC-Medium;
+    font-size: 16px;
+    color: #0A82FF;
+    letter-spacing: 0.27px;
+}
+
+.font-def-type-2 {
+    font-family: PingFangSC-Medium;
+    font-size: 16px;
+    color: #C33737;
+    letter-spacing: 0.27px;
+}
+
+.main-page {
+    position: relative;
+}
+.loading {
+    position: fixed;
+    width: 100%;
+    height: calc(100vh);
+    padding-top: 18%;
+    text-align: center;
+    z-index: 1;
+    background-color: rgba(2, 48, 134, 0.3);
+}
+
+::-webkit-scrollbar-track-piece {
     background-color: #f8f8f8;
 }
-
-.text1{
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #e7e7e7;
+::-webkit-scrollbar {
+    width:9px;
+    height:9px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #dddddd;
+    background-clip: padding-box;
+    min-height: 28px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #bbb;
 }
