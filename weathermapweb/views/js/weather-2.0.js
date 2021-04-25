@@ -1,3 +1,4 @@
+/* global $ */
 (function () {
     var myApp = angular.module("app", ['chart.js', 'ui.bootstrap', 'pascalprecht.translate']);
     myApp.config(["$translateProvider", function($translateProvider) {
