@@ -12,6 +12,6 @@ COPY ./routes ./routes
 COPY ./shutdown.sh ./
 COPY ./start.sh ./
 COPY ./views ./views
-
+COPY ./node_modules ./node_modules
 
 ENTRYPOINT ["sh", "/home/apps/start.sh"]
