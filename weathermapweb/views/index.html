@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="zh-cn" ng-app="app">
 <head>
-  <meta charset="UTF-8">
-  <title>{{'weatherDemo'|translate}}</title>
-  <link href="lib/bootstrap-3.3.7/bootstrap.min.css" rel="stylesheet">
-  <link href="./theme/css/service.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title ng-bind="'weatherDemo'|translate"></title>
+    <link href="lib/bootstrap-3.3.7/bootstrap.min.css" rel="stylesheet">
+    <link href="./theme/css/service.css" rel="stylesheet">
 </head>
 <body ng-controller="LineCtrl">
-<div>
-  <div class="topic">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h1>{{'cityWeather'|translate}}</h1>
+<div class="loading" ng-show="loading">
+    <img width="60" height="60" src="./theme/image/loading.gif"/>
+</div>
+<div class="main-page" ng-cloak ng-show="!loading">
+    <div class="topic">
+        <div class="container">
+            <div class="row dm-height-md">
+                <div class="f-left">
+                    <div class="demo-name" ng-bind="'cityWeather'|translate"></div>
+                </div>
+
+                <div class="f-right d-flex">
+                    <div>
+                        <div class="btn-group">
+                            <label class="btn btn-default" ng-model="toggleLangModel.lang" uib-btn-radio="'中文'"
+                                   ng-click="toggleLangModel.click('zh_cn')">中文</label>
+                            <label class="btn btn-default" ng-model="toggleLangModel.lang" uib-btn-radio="'English'"
+                                   ng-click="toggleLangModel.click('en_us')">English</label>
+                        </div>
+                    </div>
+                    <div class="pd-left-md">
+                        <div class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" ng-click="temperatureTypeModel.flag=!temperatureTypeModel.flag">
+                                <span ng-bind="temperatureTypeModel.dataText"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" ng-class="{'display-block': temperatureTypeModel.flag}" ng-mouseleave="temperatureTypeModel.flag=false">
+                                <li>
+                                    <a ng-model="temperatureTypeModel.dataText" uib-btn-radio="'°C'"
+                                        ng-click="temperatureTypeModel.changeClickFn('C')">°C</a>
+                                </li>
+                                <li>
+                                    <a ng-model="temperatureTypeModel.dataText" uib-btn-radio="'°F'"
+                                        ng-click="temperatureTypeModel.changeClickFn('F')">°F</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-offset-4 col-md-2">
           <div class="btn-group top-button-div">
@@ -32,18 +66,17 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row input-div">
-      <div class="alert-danger" close="restAlertModel.closeAlert($index)" dismiss-on-timeout="5000"
-           ng-bind="alert.msg" ng-repeat="alert in restAlertModel.list"
-           uib-alert></div>
-      <div class="input-group col-md-6 col-md-offset-3">
-        <input class="form-control" ng-keypress="($event.which === 13) ? searchModel.searchClickFn() : 0" ng-model="searchModel.cityNameInput"
-               placeholder="{{'yourCity'|translate}}"
-               type="text">
-        <span class="input-group-btn">
-                    <button class="btn btn-primary" ng-click="searchModel.searchClickFn()" type="button">{{'search'|translate}}</button>
+
+    <div class="search">
+        <div class="row input-div">
+            <div uib-alert ng-repeat="alert in restAlertModel.list" class="alert-danger"
+                 close="restAlertModel.closeAlert($index)" ng-bind="alert.msg"
+                 dismiss-on-timeout="5000"></div>
+            <div class="input-group">
+                <input type="text" class="form-control input-style" placeholder="{{'yourCity'|translate}}" ng-model="searchModel.cityNameInput"
+                       ng-keypress="($event.which === 13) ? searchModel.searchClickFn() : 0">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary button-style" type="button" ng-click="searchModel.searchClickFn()" ng-bind="'search'|translate"></button>
                 </span>
       </div>
     </div>
@@ -79,8 +112,169 @@
               <div class="bg-success" ng-bind="globalData.text9"></div>
               <div class="bg-success" ng-bind="globalData.text10"></div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="row text-center sub-text-div">
+                <div ng-bind="'weatherDetails'|translate"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="padding:0;">
+                    <div class="card-item-style mg-bottom-md" ng-show="uviDataModel.isBeta">
+                        <div class="mg-bottom-md item-title">
+                            <span ng-bind="'currentUV'|translate"></span>
+                            <img ng-src="./theme/image/new.png">
+                        </div>
+                        <table class="table table-striped table-style-1">
+                            <tbody>
+                            <tr></tr>
+                            <tr>
+                                <th><span ng-bind="'releaseTime'|translate"></span></th>
+                                <th><span ng-bind="'index'|translate"></span></th>
+                            </tr>
+                            <tr>
+                                <td ng-bind="uviDataModel.date"></td>
+                                <td ng-bind="uviDataModel.value"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="font-smaller uvi-div">
+                            <div ng-bind="globalData.text5" class="wm-font-bolder desc"></div>
+                            <div class="line-height-md">
+                                <div>
+                                    <span class="color-def-one width-md" ng-bind="globalData.levelOne"></span>
+                                    <span ng-bind="globalData.text6"></span>
+                                </div>
+                                <div>
+                                    <span class="color-def-two width-md" ng-bind="globalData.levelTwo"></span>
+                                    <span ng-bind="globalData.text7"></span>
+                                </div>
+                                <div>
+                                    <span class="color-def-thread width-md" ng-bind="globalData.levelThread"></span>
+                                    <span ng-bind="globalData.text8"></span>
+                                </div>
+                                <div>
+                                    <span class="color-def-four width-md" ng-bind="globalData.levelFour"></span>
+                                    <span ng-bind="globalData.text9"></span>
+                                </div>
+                                <div>
+                                    <span class="color-def-five width-md" ng-bind="globalData.levelFive"></span>
+                                    <span ng-bind="globalData.text10"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-          </div>
+                    <div class="card-item-style">
+                        <div class="item-title">
+                            <span ng-bind="globalData.text1"></span>
+                            <span class="pd-left-md">
+                                <img ng-src="./theme/image/mark.png">
+                                <span class="city-adress" ng-bind="globalData.cityDress"></span>
+                            </span>
+                        </div>
+                        <div class="weather">
+                            <span><img class="weather-img-style" ng-src="./theme/image/{{weatherTableModel.image}}.png"></span>
+                            <div class="weather-text">
+                                <span class="weather-temp-txt" ng-bind="weatherTableModel.temp"></span>
+                                <span ng-bind="weatherTableModel.weather"></span>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-style-2">
+                            <caption class="time-style" ng-bind="weatherTableModel.time"></caption>
+                            <tbody>
+                            <tr ng-repeat="item in weatherTableModel.data">
+                                <td ng-bind="item.name"></td>
+                                <td ng-bind="item.value"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                <div class="col-md-9">
+                    <uib-tabset class="card-item-style" active="0">
+                        <uib-tab index="0" heading="Main">
+                            <div class="sub-tab-div">
+                                <h4 class="item-title" ng-bind="globalData.text2"></h4>
+                            </div>
+                            <div class="sub-tab-div">
+                                <canvas id="forecastMainLineId" class="chart chart-line"
+                                        chart-data="forecastMainChartModel.data"
+                                        chart-labels="forecastMainChartModel.labels"
+                                        chart-series="forecastMainChartModel.series"
+                                        chart-dataset-override="forecastMainChartModel.datasetOverride"
+                                        chart-colors="forecastMainChartModel.colors"
+                                        chart-click="forecastMainChartModel.onClick">
+                                </canvas>
+                            </div>
+                            <div class="for-list-group-div">
+                                <ul class="list-group list-inline row">
+                                    <li class="list-group-item col-md-1"
+                                        ng-repeat="lItem in forecastMainListGroupModel.data">
+                                        <img class="text-center mg-bottom-md" ng-src="./theme/image/{{lItem.image}}.png">
+                                        <div class="text-center desc wm-font-bolder" ng-bind="lItem.temp"></div>
+                                        <div class="text-center font-smaller-color-grey" ng-bind="lItem.wind"></div>
+                                        <div class="text-center font-smaller-color-grey" ng-bind="lItem.pressure"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="1" heading="Hourly">
+                            <div class="sub-tab-div">
+                                <h4 class="item-title" ng-bind="globalData.text3"></h4>
+                            </div>
+                            <div class="sub-tab-div">
+                                <table class="table table-striped">
+                                    <!--<caption>Hourly weather and forecasts in Shanghai, CN</caption>-->
+                                    <tbody>
+                                    <tr ng-repeat="item in forecastHourlyTableModel.data">
+                                        <td>
+                                            <span class="desc" ng-bind="item.time"></span>
+                                            <span class="pd-left-md mg-left-md"><img ng-src="./theme/image/{{item.image}}.png"></span>
+                                        </td>
+                                        <td class="middle">
+                                            <div>
+                                                <span class="{{item.color}}" ng-bind="item.temp"></span>
+                                                <span class="desc" ng-bind="item.weather"></span>
+                                            </div>
+                                            <div>
+                                                <span class="font-smaller-color-grey" ng-bind="item.summary"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="2" heading="Chart">
+                            <div class="row sub-tab-div">
+                                <div class="col-md-8">
+                                    <h4 class="item-title" ng-bind="globalData.text4"></h4>
+                                </div>
+                                <div class="col-md-offset-1 col-md-3">
+                                    <select class="form-control chart-select-div"
+                                            ng-model="forecastChartMultiModel.type"
+                                            ng-change="forecastChartMultiModel.onChange(forecastChartMultiModel.type)">
+                                        <option>Temperature</option>
+                                        <option>Wind</option>
+                                        <option>Pressure</option>
+                                        <option>Precipitation</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="sub-tab-div">
+                                <canvas id="forecastChartMultiId" class="chart chart-bar"
+                                        chart-data="forecastChartMultiModel.data"
+                                        chart-labels="forecastChartMultiModel.labels"
+                                        chart-series="forecastChartMultiModel.series"
+                                        chart-dataset-override="forecastChartMultiModel.datasetOverride"
+                                        chart-colors="forecastChartMultiModel.colors">
+                                </canvas>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
 
           <h4 class="{{uviDataModel.isBeta?'text1':''}}" ng-bind="globalData.text1"></h4>
           <div>
@@ -187,28 +381,29 @@
     </div>
   </div>
 
-  <div class="container" id="footer">
-    <nav class="navbar navbar-default navbar-fixed-bottom">
-      <div class="navbar-inner navbar-content-center">
-        <p class="muted credit foot-txt-div">
-          {{'baseOn'|translate}}
-          <a href="http://www.huaweicloud.com/product/cse.html" target='_blank'>{{'cse'|translate}}</a>
-          {{'dataSource'|translate}}
-          <a href="https://openweathermap.org/" target='_blank'>OpenWeatherMap</a>
-        </p>
-      </div>
-    </nav>
-  </div>
+    <div id="footer" class="container">
+        <nav class="navbar navbar-default navbar-fixed-bottom" style="background: #E0E4F1;line-height: 30px;margin-bottom: -10px;">
+            <div class="navbar-inner navbar-content-center">
+                <p class="muted credit foot-txt-div">
+                    <span ng-bind="'baseOn'|translate"></span>
+                    <a href="http://www.huaweicloud.com/product/cse.html" target='_blank' ng-bind="'cse'|translate"></a>
+                    <span ng-bind="'dataSource'|translate"></span>
+                    <a href="https://openweathermap.org/" target='_blank'>OpenWeatherMap</a>
+                </p>
+            </div>
+        </nav>
+    </div>
 </div>
 
 </body>
-<script src="./lib/angular-1.6.6/angular.min.js"></script>
-<script src="./lib/angular-translate/angular-translate.min.js"></script>
-<script src="./lib/angular-translate/angular-translate-loader-static-files.min.js"></script>
-<script src="./lib/Chart.js-2.7.1/Chart.min.js"></script>
-<script src="./lib/angular-chart.js-1.1.1/angular-chart.min.js"></script>
-<script src="./lib/ui-bootstrap-2.5.0/ui-bootstrap-tpls-2.5.0.min.js"></script>
-<script src="./i18n/en_us.js"></script>
-<script src="./i18n/zh_cn.js"></script>
-<script src="js/weather-2.0.js"></script>
+    <script src="./lib/jquery-1.11.0.js"></script>
+    <script src="./lib/angular-1.6.6/angular.min.js"></script>
+    <script src="./lib/angular-translate/angular-translate.min.js"></script>
+    <script src="./lib/angular-translate/angular-translate-loader-static-files.min.js"></script>
+    <script src="./lib/Chart.js-2.7.1/Chart.min.js"></script>
+    <script src="./lib/angular-chart.js-1.1.1/angular-chart.min.js"></script> 
+    <script src="./lib/ui-bootstrap-2.5.0/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script src="./i18n/en_us.js"></script>
+    <script src="./i18n/zh_cn.js"></script>
+    <script src="js/weather-2.0.js"></script>
 </html>

@@ -1,10 +1,11 @@
+/* global $ */
 (function () {
     var myApp = angular.module("app", ['chart.js', 'ui.bootstrap', 'pascalprecht.translate']);
     myApp.config(["$translateProvider", function($translateProvider) {
-        $translateProvider.translations('zh_cn', globalLanguageZh);
         $translateProvider.translations('en_us', globalLanguageEn);
+        $translateProvider.translations('zh_cn', globalLanguageZh);
         if (!window.localStorage.getItem("lang")) {
-            window.localStorage.setItem("lang", navigator.language.toLowerCase() == "zh_cn" ? "zh_cn" : "en_us");
+            window.localStorage.setItem("lang", navigator.language.toLowerCase() == "en_us" ? "en_us" : "zh_cn");
         }
         var lang = window.localStorage.getItem("lang");
         $translateProvider.preferredLanguage(lang);
@@ -27,6 +28,7 @@
     }]);
 
     myApp.controller("LineCtrl", function ($scope, $http, $timeout, $filter, $window, $translate, T, $location) {
+        $scope.loading = true;
 
         $scope.toggleLangModel = {
             lang: window.localStorage.getItem("lang") == "zh_cn" ? "中文" : "English",
@@ -59,9 +61,15 @@
             text8: T.T("highVolume"),
             text9: T.T("excess"),
             text10: T.T("excess11"),
+            levelOne: T.T("levelOne"),
+            levelTwo: T.T("levelTwo"),
+            levelThread: T.T("levelThread"),
+            levelFour: T.T("levelFour"),
+            levelFive: T.T("levelFive"),
             refreshText: function () {
-                $scope.globalData.text1 = T.T("currentCity") + $scope.globalData.city + ", " + $scope.globalData.country;
-                $scope.globalData.text2 = T.T("weather 36 ")+ $scope.globalData.city + ", " + $scope.globalData.country;
+                // $scope.globalData.text1 = T.T("currentCity") + $scope.globalData.city + ", " + $scope.globalData.country;
+                $scope.globalData.cityDress = $scope.globalData.city + ", " + $scope.globalData.country;
+                $scope.globalData.text2 = T.T("weather36")+ $scope.globalData.city + ", " + $scope.globalData.country;
                 $scope.globalData.text3 = T.T("weather3D") + $scope.globalData.city + ", " + $scope.globalData.country;
                 $scope.globalData.text4 = T.T("map5D") + $scope.globalData.city + ", " + $scope.globalData.country;
             }
@@ -100,9 +108,11 @@
         };
 
         $scope.temperatureTypeModel = {
+            flag: false,
             dataText: "°C",
             changeClickFn: function (val) {
                 $scope.globalData.tempType = val;
+                $scope.temperatureTypeModel.flag = false;
                 if ($scope.globalData.tempType == 'F') {
                     $scope.forecastMainChartModel.data = [g_pageData.v_maxDatasF, g_pageData.v_minDatasF];
                     $scope.forecastMainListGroupModel.data = g_pageData.v_listGroupDatasF;
@@ -126,7 +136,7 @@
             onClick: function (points, evt) {
                 console.log(points, evt);
             },
-            // colors: ['#45b7cd', '#ff6384', '#DCDCDC'],
+            colors: ['#45b7cd', '#ff6384', '#DCDCDC'],
             datasetOverride: [{
                 label: $scope.highestTemp,
                 borderWidth: 2,
@@ -146,7 +156,7 @@
             labels: [],
             series: [],
             data: [],
-            // colors: ['#45b7cd', '#ff6384', '#DCDCDC'],
+            colors: ['#45b7cd', '#ff6384', '#DCDCDC'],
             datasetOverride: [{
                 label: T.T("tempPieChart"),
                 borderWidth: 1,
@@ -198,9 +208,10 @@
             $http({
                 method: 'GET',
                 url: "/weathermapweb/ui/fusionweatherdata",
+                // url: "./mock/fusion_beta.json",
                 params: {"city": vCityName},
                 headers: {"demo": "2.0"},
-                timeout: 20000
+                timeout: 5000
             }).then(function (response) {
                     console.log(response);
 
@@ -250,6 +261,7 @@
                             "weather": item.weather,
                             "image": item.image,
                             "temp": item.temperature + " °C",
+                            "color": item.temperature < 20 ? "font-def-type-1" : "font-def-type-2",
                             "summary": item.windSpeed + " m/s,  " + item.cloudsDeg + " %,  " + item.pressure + " hpa"
                         });
                         g_pageData.v_HourlyTableDatasF.push({
@@ -257,6 +269,7 @@
                             "weather": item.weather,
                             "image": item.image,
                             "temp": toFahrenheit(item.temperature) + " °F",
+                            "color": toFahrenheit(item.temperature) < 70 ? "font-def-type-1" : "font-def-type-2",
                             "summary": item.windSpeed + " m/s,  " + item.cloudsDeg + " %,  " + item.pressure + " hpa"
                         });
                         g_pageData.v_barTempData.push(item.temperature);
@@ -273,6 +286,7 @@
                             "weather": item.weather,
                             "image": item.image,
                             "temp": item.temperature + " °C",
+                            "color": item.temperature < 20 ? "font-def-type-1" : "font-def-type-2",
                             "summary": item.windSpeed + " m/s,  " + item.cloudsDeg + " %,  " + item.pressure + " hpa"
                         });
                         g_pageData.v_HourlyTableDatasF.push({
@@ -280,6 +294,7 @@
                             "weather": item.weather,
                             "image": item.image,
                             "temp": toFahrenheit(item.temperature) + " °F",
+                            "color": toFahrenheit(item.temperature) < 70 ? "font-def-type-1" : "font-def-type-2",
                             "summary": item.windSpeed + " m/s,  " + item.cloudsDeg + " %,  " + item.pressure + " hpa"
                         });
                     });
@@ -298,13 +313,44 @@
                         $scope.forecastChartMultiModel.data = [g_pageData.v_barTempData, g_pageData.v_barTempData];
                     }
 
+                    function getImg (img) {
+                        let m = '';
+                        switch(img) {
+                            case '01d':
+                                m = 'pic1';break;
+                            case '02d':
+                                m = 'pic2';break;
+                            case '03d':
+                            case '03n':
+                                m = 'pic3';break;
+                            case '10d':
+                            case '10n':
+                            case '11d':
+                            case '11n':
+                                m = 'pic4';break;
+                            case '13d':
+                            case '13n':
+                            case '50d':
+                            case '50n':
+                                m = 'pic5';break;
+                            case '01n':
+                            case '02n':
+                            case '04d':
+                            case '04n':
+                                m = 'pic6';break;
+                            default:
+                                m = 'pic1';
+                        }
+                        return m;
+                    }
+
                     // current weather
                     var rCurrentWeather = response.data.currentWeather || {};
                     $scope.weatherTableModel = {
                         position: rCurrentWeather.cityName,
                         tempValue: rCurrentWeather.temperature,
                         temp: $scope.globalData.tempType == 'F' ? toFahrenheit(rCurrentWeather.temperature) + " °F" : rCurrentWeather.temperature + " °C",
-                        image: rCurrentWeather.image,
+                        image: getImg(rCurrentWeather.image),
                         time: $filter('date')(parseInt(rCurrentWeather.date) * 1000, "yyyy-MM-dd HH:mm"),
                         weather: rCurrentWeather.weather,
                         data: [{
@@ -354,6 +400,9 @@
         }
 
         achieveAllWeatherData($scope.globalData.city);
+        $timeout(function () {
+            $scope.loading = false;
+        }, 100);
     });
 
     myApp.config(['ChartJsProvider', function (ChartJsProvider) {
