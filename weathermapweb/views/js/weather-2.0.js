@@ -199,7 +199,7 @@
         };
 
         function achieveAllWeatherData(v_c) {
-            var vCityName = v_c || "shenzhen";;
+            var vCityName = v_c || "shenzhen";
             if (!$location.search().city) {
                 $location.search("city", vCityName);
             } else {
