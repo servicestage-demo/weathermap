@@ -8,11 +8,7 @@ router.get('/', function (req, res, next) {
     var proxy_port = process.env.HTTP_PROXY_PORT || '30101'; // 13092
     var service_addr = process.env.SERVICE_ADDR || 'fusionweather'
 
-    console.log('HTTP_PROXY_HOST : ' + process.env.HTTP_PROXY_HOST);
-    console.log('HTTP_PROXY_PORT : ' + process.env.HTTP_PROXY_PORT);
-    console.log('HTTP_PROXY_HOST : ' + typeof (process.env.HTTP_PROXY_HOST));
-    console.log('HTTP_PROXY_PORT : ' + typeof (process.env.HTTP_PROXY_PORT));
-
+    // Adapt to the scenario without Mesher.You only need to configure the SERVICE_ADDR
     if (service_addr.split(":").length === 2
         && typeof (process.env.HTTP_PROXY_HOST) == 'undefined'
         && typeof (process.env.HTTP_PROXY_PORT) == 'undefined') {
