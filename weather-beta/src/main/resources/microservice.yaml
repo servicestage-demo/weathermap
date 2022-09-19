@@ -17,6 +17,12 @@ servicecomb:
       refresh_interval: 5000
   rest:
     address: 0.0.0.0:13093
+  router:
+    type: router
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
   handler:
     chain:
       Provider:

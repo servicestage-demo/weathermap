@@ -21,6 +21,12 @@ servicecomb:
     address: 0.0.0.0:13092
   request:
     timeout: 3000
+  router:
+    type: router
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
   handler:
     chain:
       Provider:
