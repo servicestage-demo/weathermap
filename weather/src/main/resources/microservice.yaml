@@ -21,6 +21,12 @@ servicecomb:
       compression: false
       connection:
         idleTimeoutInSeconds: 2
+  router:
+    type: router
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
   handler:
     chain:
       Provider:

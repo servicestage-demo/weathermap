@@ -51,6 +51,10 @@
         </dependency>
         <dependency>
             <groupId>org.apache.servicecomb</groupId>
+            <artifactId>handler-router</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicecomb</groupId>
             <artifactId>darklaunch</artifactId>
         </dependency>
         <!-- using log4j -->
