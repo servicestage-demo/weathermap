@@ -20,7 +20,7 @@
     <properties>
         <demo.main>com.service.edge-service.GatewayApplication</demo.main>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <servicecomb.version>2.6.0</servicecomb.version>
+        <servicecomb.version>2.7.9</servicecomb.version>
     </properties>
 
     <dependencyManagement>
