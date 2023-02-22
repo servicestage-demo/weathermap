@@ -1,0 +1,46 @@
+servicecomb-config-order: 100
+
+servicecomb:
+  service:
+    application: weathermap
+    name: edge-service
+    version: 0.0.1
+    registry:
+      # Default using local service center
+      address: http://127.0.0.1:30100 #此处填写要注册到的微服务引擎的注册中心地址
+      # address: https://cse.cn-south-1.myhuaweicloud.com
+      instance:
+        watch: false
+  # CSE配置中心2.0
+#  kie:
+#    serverUri: http://127.0.0.1:30103 #此处填写要注册到的微服务引擎的配置中心地址
+  # CSE配置中心1.0
+  config:
+    client:
+      serverUri: http://127.0.0.1:30103 #此处填写要注册到的微服务引擎的配置中心地址
+      refreshMode: 1
+      refresh_interval: 5000
+
+  rest:
+    address: 0.0.0.0:3010?sslEnabled=false
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
+
+# Here we just give a simple demo.
+# The traffic is forwarded to the microservice fusionweather, and the actual scene is much more complex than this
+  http:
+    dispatcher:
+      edge:
+        default:
+          enabled: false
+        url:
+          enabled: true
+          pattern: /(.*)
+          mappings:
+            consumer:
+              prefixSegmentCount: 0
+              path: "/.*"
+              microserviceName: fusionweather
+              versionRule: 0.0.0+

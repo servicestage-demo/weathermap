@@ -7,16 +7,22 @@ servicecomb:
     properties:
       allowCrossApp: false
     registry:
-      address: https://cse.cn-north-1.myhuaweicloud.com
+      address: http://127.0.0.1:30100 #此处填写要注册到的微服务引擎的注册中心地址
       instance:
         watch: false
   config:
     client:
-      serverUri: https://cse.cn-north-1.myhuaweicloud.com
+      serverUri: http://127.0.0.1:30103 #此处填写要注册到的微服务引擎的配置中心地址
       refreshMode: 1
       refresh_interval: 5000
   rest:
     address: 0.0.0.0:13093
+  router:
+    type: router
+  monitor:
+    client:
+      enabled: true
+      serverUri: http://127.0.0.1:30109
   handler:
     chain:
       Provider:
