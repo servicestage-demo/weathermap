@@ -11,6 +11,11 @@ servicecomb:
       instance:
         watch: false
   config:
+    provider:
+      metrics:
+        enabled: false
+      bizkeeper:
+        enabled: true
     client:
       serverUri: http://127.0.0.1:30103 #此处填写要注册到的微服务引擎的配置中心地址
       refreshMode: 1
