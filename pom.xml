@@ -8,15 +8,16 @@
     <module>forecast</module>
     <module>fusionweather</module>
     <module>weather-beta</module>
+    <module>edge-service</module>
   </modules>
   <name>weathermap</name>
 
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
-    <spring-cloud-huawei.version>1.7.0-Hoxton</spring-cloud-huawei.version>
-    <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+    <spring-boot.version>2.6.13</spring-boot.version>
+    <spring-cloud-huawei.version>1.10.8-2021.0.x</spring-cloud-huawei.version>
+    <spring-cloud.version>2021.0.5</spring-cloud.version>
     <servicecomb.version>2.5.2</servicecomb.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<project
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>edge-service</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.service.gateway.GatewayApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <groupId>org.springframework.boot</groupId>
+                <version>2.3.2.RELEASE</version>
+            </plugin>
+
+            <!-- check style -->
+            <plugin>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.0.0</version>
+            </plugin>
+
+        </plugins>
+    </build>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <artifactId>spring-cloud-huawei-dependencies</artifactId>
+                <groupId>com.huaweicloud</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${spring-cloud-huawei.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <groupId>org.springframework.boot</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <groupId>org.springframework.cloud</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.huaweicloud</groupId>
+            <artifactId>spring-cloud-starter-huawei-service-engine-gateway</artifactId>
+        </dependency>
+    </dependencies>
+    <groupId>com.service</groupId>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>edge-service</name>
+
+    <packaging>jar</packaging>
+
+    <parent>
+        <artifactId>weathermap</artifactId>
+        <groupId>dev</groupId>
+        <version>1.0.0</version>
+    </parent>
+
+    <properties>
+        <demo.main>com.service.gateway.GatewayApplication</demo.main>
+    </properties>
+
+    <url>http://maven.apache.org</url>
+
+</project>

@@ -47,10 +47,6 @@
       <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
       <groupId>com.huaweicloud</groupId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-    </dependency>
     <!-- using log4j -->
     <dependency>
       <artifactId>slf4j-log4j12</artifactId>

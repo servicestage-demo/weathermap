@@ -1,9 +1,9 @@
 server:
-  port: 10392
+  port: 3010
 
 spring:
   application:
-    name: fusionweather
+    name: edge-service
   cloud:
     servicecomb:
       discovery:
@@ -20,3 +20,9 @@ spring:
         address: ${PAAS_CSE_DS_ENDPOINT:http://127.0.0.1:30109}
         invocationProviderEnabled: true # 使用基于请求的接口计数
         governanceProviderEnabled: false # 使用基于熔断器的计数
+    gateway:
+      routes:
+        - id: fusionweather
+          uri: lb://fusionweather
+          predicates:
+            - Path=/**
