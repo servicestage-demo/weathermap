@@ -7,11 +7,16 @@ spring:
   cloud:
     servicecomb:
       discovery:
-        address:  http://127.0.0.1:30100
+        address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
         serviceName: ${spring.application.name}
         appName: weathermap
         version: 0.0.3
         watch: false
       config:
-        serverAddr: http://127.0.0.1:30110
+        serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
         serverType: kie
+      dashboard:
+        enabled: true
+        address: ${PAAS_CSE_DS_ENDPOINT:http://127.0.0.1:30109}
+        invocationProviderEnabled: true # 使用基于请求的接口计数
+        governanceProviderEnabled: false # 使用基于熔断器的计数

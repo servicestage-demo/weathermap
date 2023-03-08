@@ -48,23 +48,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-offset-4 col-md-2">
-          <div class="btn-group top-button-div">
-            <label class="btn btn-default" ng-click="toggleLangModel.click('en_us')" ng-model="toggleLangModel.lang"
-                   uib-btn-radio="'English'">English</label>
-            <label class="btn btn-default" ng-click="toggleLangModel.click('zh_cn')" ng-model="toggleLangModel.lang"
-                   uib-btn-radio="'中文'">中文</label>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="btn-group top-button-div">
-            <label class="btn btn-default" ng-click="temperatureTypeModel.changeClickFn('C')" ng-model="temperatureTypeModel.dataText"
-                   uib-btn-radio="'°C'">°C</label>
-            <label class="btn btn-default" ng-click="temperatureTypeModel.changeClickFn('F')" ng-model="temperatureTypeModel.dataText"
-                   uib-btn-radio="'°F'">°F</label>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="search">
@@ -78,39 +61,6 @@
                 <span class="input-group-btn">
                     <button class="btn btn-primary button-style" type="button" ng-click="searchModel.searchClickFn()" ng-bind="'search'|translate"></button>
                 </span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="row text-center sub-text-div">
-        <h3>{{'weatherDetails'|translate}}</h3>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="beta-line" ng-show="uviDataModel.isBeta">
-            <table class="table table-striped table-bordered">
-              <caption>
-                <h4> {{'currentUV'|translate}} <span class="uvi-new-span">NEW</span></h4>
-              </caption>
-              <thead>
-              <tr>
-                <th>{{'releaseTime'|translate}}</th>
-                <th>{{'index'|translate}}</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td ng-bind="uviDataModel.date"></td>
-                <td ng-bind="uviDataModel.value"></td>
-              </tr>
-              </tbody>
-            </table>
-            <div class="font-smaller uvi-div">
-              <div class="bg-success wm-font-bolder" ng-bind="globalData.text5"></div>
-              <div class="bg-success" ng-bind="globalData.text6"></div>
-              <div class="bg-success" ng-bind="globalData.text7"></div>
-              <div class="bg-success" ng-bind="globalData.text8"></div>
-              <div class="bg-success" ng-bind="globalData.text9"></div>
-              <div class="bg-success" ng-bind="globalData.text10"></div>
             </div>
         </div>
     </div>
@@ -276,110 +226,10 @@
                         </uib-tab>
                     </uib-tabset>
 
-          <h4 class="{{uviDataModel.isBeta?'text1':''}}" ng-bind="globalData.text1"></h4>
-          <div>
-            <span><img ng-src="./theme/image/{{weatherTableModel.image}}.png"></span>
-            <span class="weather-temp-txt weather-text-shadow" ng-bind="weatherTableModel.temp"></span>
-          </div>
-          <p ng-bind="weatherTableModel.weather"></p>
-          <table class="table table-striped table-bordered">
-            <caption ng-bind="weatherTableModel.time"></caption>
-            <tbody>
-            <tr ng-repeat="item in weatherTableModel.data">
-              <td ng-bind="item.name"></td>
-              <td ng-bind="item.value"></td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-9">
-          <uib-tabset active="0">
-            <uib-tab heading="Main" index="0">
-              <div class="sub-tab-div">
-                <h4 ng-bind="globalData.text2"></h4>
-              </div>
-              <div class="sub-tab-div">
-                <canvas chart-click="forecastMainChartModel.onClick" chart-colors="forecastMainChartModel.colors"
-                        chart-data="forecastMainChartModel.data"
-                        chart-dataset-override="forecastMainChartModel.datasetOverride"
-                        chart-labels="forecastMainChartModel.labels"
-                        chart-series="forecastMainChartModel.series"
-                        class="chart chart-line"
-                        id="forecastMainLineId">
-                </canvas>
-              </div>
-              <div class="for-list-group-div">
-                <ul class="list-group list-inline row">
-                  <li class="list-group-item col-md-1"
-                      ng-repeat="lItem in forecastMainListGroupModel.data">
-                    <img class="text-center" ng-src="./theme/image/{{lItem.image}}.png">
-                    <div class="text-center" ng-bind="lItem.temp"></div>
-                    <div class="text-center" ng-bind="lItem.wind"></div>
-                    <div class="text-center" ng-bind="lItem.pressure"></div>
-                  </li>
-                </ul>
-              </div>
-            </uib-tab>
-            <uib-tab heading="Hourly" index="1">
-              <div class="sub-tab-div">
-                <h4 ng-bind="globalData.text3"></h4>
-              </div>
-              <div class="sub-tab-div">
-                <table class="table table-striped table-bordered">
-                  <!--<caption>Hourly weather and forecasts in Shanghai, CN</caption>-->
-                  <tbody>
-                  <tr ng-repeat="item in forecastHourlyTableModel.data">
-                    <td>
-                      <span ng-bind="item.time"></span>
-                      <span><img height="50px" ng-src="./theme/image/{{item.image}}.png"
-                                 width="50px"></span>
-                    </td>
-                    <td class="middle">
-                      <div>
-                        <span class="weather-text-shadow" ng-bind="item.temp"></span>
-                        <span ng-bind="item.weather"></span>
-                      </div>
-                      <div>
-                        <span ng-bind="item.summary"></span>
-                      </div>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-            </uib-tab>
-            <uib-tab heading="Chart" index="2">
-              <div class="row sub-tab-div">
-                <div class="col-md-8">
-                  <h4 ng-bind="globalData.text4"></h4>
                 </div>
-                <div class="col-md-offset-1 col-md-3">
-                  <select class="form-control chart-select-div"
-                          ng-change="forecastChartMultiModel.onChange(forecastChartMultiModel.type)"
-                          ng-model="forecastChartMultiModel.type">
-                    <option>Temperature</option>
-                    <option>Wind</option>
-                    <option>Pressure</option>
-                    <option>Precipitation</option>
-                  </select>
-                </div>
-              </div>
-              <div class="sub-tab-div">
-                <canvas chart-colors="forecastChartMultiModel.colors" chart-data="forecastChartMultiModel.data"
-                        chart-dataset-override="forecastChartMultiModel.datasetOverride"
-                        chart-labels="forecastChartMultiModel.labels"
-                        chart-series="forecastChartMultiModel.series"
-                        class="chart chart-bar"
-                        id="forecastChartMultiId">
-                </canvas>
-              </div>
-            </uib-tab>
-          </uib-tabset>
-
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
     <div id="footer" class="container">
         <nav class="navbar navbar-default navbar-fixed-bottom" style="background: #E0E4F1;line-height: 30px;margin-bottom: -10px;">
