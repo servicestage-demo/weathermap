@@ -19,6 +19,11 @@ servicecomb:
   router:
     type: router
   monitor:
+    provider:
+      metrics:
+        enabled: false
+      bizkeeper:
+        enabled: true
     client:
       enabled: true
       serverUri: http://127.0.0.1:30109
