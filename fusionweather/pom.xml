@@ -83,6 +83,10 @@
       <groupId>junit</groupId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+    </dependency>
   </dependencies>
   <groupId>com.service</groupId>
 

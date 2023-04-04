@@ -1,0 +1,21 @@
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVERS:127.0.0.1:9092} #kafka连接地址
+    producer:
+      acks: all  #应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      batch-size: 16384  #批量大小
+      properties:
+        linger.ms: 0   # 当生产端积累的消息达到batch-size或接收到消息linger.ms后,生产者就会将消息提交给kafka linger.ms为0表示每接收到一条消息就提交给kafka,这时候batch-size其实就没用了
+        sasl.mechanism: PLAIN
+        security.protocol: SASL_SSL
+        sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="${KAFKA_SASL_USERNAME:username}" password="${KAFKA_SASL_PWD:password}";
+        ssl.truststore.location: /usr/local/soft/client.truststore.jks
+        #ssl.truststore.location: C:\\Users\\Administrator\\Desktop\\ssl\\cert\\client.truststore.jks
+        ssl.truststore.password: dms@kafka
+        ssl.endpoint.identification.algorithm:
+      buffer-memory: 33554432  #生产端缓冲区大小
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+flyway:
+  connect-retries: 0  #重试次数

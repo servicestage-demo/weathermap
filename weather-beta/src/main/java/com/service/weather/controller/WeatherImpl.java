@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service.weather.entity.objective.CurrentWeatherSummary;
 import com.service.weather.util.CustomException;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:26:36.166+08:00")
 
