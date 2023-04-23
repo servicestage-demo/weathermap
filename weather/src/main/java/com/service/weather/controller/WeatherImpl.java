@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import com.service.weather.util.CustomException;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:26:36.166+08:00")
 
 @RestController
+@RefreshScope
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
 public class WeatherImpl {
 
@@ -40,6 +42,12 @@ public class WeatherImpl {
 
   private int latencyTime = 0;
 
+  @Value("${weather.returnErr:false}")
+  private boolean returnErr;
+
+  @Value("${weather.returnTimeOut:0}")
+  private int returnTimeOut;
+
   @PostConstruct
   public void init() {
     LOGGER.info("Init success");
@@ -55,7 +63,7 @@ public class WeatherImpl {
       produces = {"application/json"},
       method = RequestMethod.GET)
   public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city,
-      @RequestParam(value = "user", required = false) String user) {
+      @RequestParam(value = "user", required = false) String user) throws Exception {
 
     calledTimes++;
     System.out.println("has received " + calledTimes + " calls");
@@ -75,6 +83,16 @@ public class WeatherImpl {
 
       }
     }
+
+    if (returnErr) {
+      throw new CustomException();
+    }
+
+    if (returnTimeOut > 0) {
+      Thread.sleep(returnTimeOut * 1000);
+      throw new CustomException();
+    }
+
     LOGGER.info("showCurrentWeather() is called, city = [{}], user = [{}]", city, user);
     return userCurrentweatherdataDelegate.showCurrentWeather(city);
   }
