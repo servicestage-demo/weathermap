@@ -1,8 +1,10 @@
 package com.service.fusionweather.controller;
 
+import com.service.fusionweather.util.KafkaUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
@@ -19,6 +21,15 @@ public class FusionweatherImplDelegate {
 
   @Autowired
   RestTemplate restTemplate;
+
+  @Value("${KAFKA_ENABLED:false}")
+  private boolean kafkaEnabled = false;
+
+  @Value("${KAFKA_TOPIC:abc}")
+  private String kafkaTopic = "";
+
+  @Autowired
+  private KafkaUtil kafkaUtil;
 
   public FusionWeatherSummary showFusionWeather(String city, String user) {
     FusionWeatherSummary summary = new FusionWeatherSummary();
@@ -39,9 +50,17 @@ public class FusionweatherImplDelegate {
     try {
       Object s = restTemplate.getForObject(url, Object.class, new Object());
       su = Json.decodeValue(Json.encode(s), CurrentWeatherSummary.class);
+
+      if(kafkaEnabled) {
+        kafkaUtil.send(kafkaTopic, "Message from fusionweather: get current weather summary success");
+      }
     } catch (Exception e) {
       LOGGER.error("FusionWeatherDataDelegate>> Failed to achieve the current weather summary", e);
       su = new CurrentWeatherSummary();
+
+      if(kafkaEnabled) {
+        kafkaUtil.send(kafkaTopic, "Message from fusionweather: get current weather summary failed");
+      }
     }
     return su;
   }
@@ -54,9 +73,17 @@ public class FusionweatherImplDelegate {
     try {
       Object s = restTemplate.getForObject(url, Object.class, new Object());
       su = Json.decodeValue(Json.encode(s), ForecastWeatherSummary.class);
+
+      if(kafkaEnabled) {
+        kafkaUtil.send(kafkaTopic, "Message from fusionweather: get forecast weather summary success");
+      }
     } catch (Exception e) {
       LOGGER.error("FusionWeatherDataDelegate>> Failed to achieve the forecast weather summary", e);
       su = new ForecastWeatherSummary();
+
+      if(kafkaEnabled) {
+        kafkaUtil.send(kafkaTopic, "Message from fusionweather: get forecast weather summary failed");
+      }
     }
     return su;
   }

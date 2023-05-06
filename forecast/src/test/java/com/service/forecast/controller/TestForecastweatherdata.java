@@ -23,7 +23,7 @@ public class TestForecastweatherdata {
 
   @Before
   public void setUp() throws Exception {
-    Log4jUtils.init();
+    //Log4jUtils.init();
   }
 
   @Test
