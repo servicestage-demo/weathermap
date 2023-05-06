@@ -61,6 +61,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <!-- 去掉默认配置 -->
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
@@ -75,8 +82,8 @@
       <groupId>com.huaweicloud</groupId>
     </dependency>
     <dependency>
-      <artifactId>slf4j-log4j12</artifactId>
-      <groupId>org.slf4j</groupId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
     </dependency>
     <dependency>
       <artifactId>junit</artifactId>

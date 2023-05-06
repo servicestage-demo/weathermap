@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %highlight{%-5level} %style{[%t]}{bright,magenta} %style{%c{1.}.%M(%L)}{cyan}: %msg%n"/>
+        </Console>
+        <File name="File" fileName="/logs/weather-beta.log">
+            <PatternLayout pattern="%d [%-5level] [%t] {%c{1.}.%M(%L)}: %msg%n" />
+        </File>
+    </appenders>
+    <loggers>
+        <root level="info">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="File"/>
+        </root>
+    </loggers>
+</configuration>
