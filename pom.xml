@@ -16,7 +16,7 @@
 
   <properties>
     <spring-boot.version>2.6.13</spring-boot.version>
-    <spring-cloud-huawei.version>1.10.10-2021.0.x</spring-cloud-huawei.version>
+    <spring-cloud-huawei.version>1.10.13-2021.0.x</spring-cloud-huawei.version>
     <spring-cloud.version>2021.0.5</spring-cloud.version>
     <servicecomb.version>2.5.2</servicecomb.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
