@@ -6,6 +6,9 @@ spring:
     name: fusionweather
   cloud:
     servicecomb:
+      context:
+        query-context-mapper:
+          city: city
       discovery:
         version: 0.0.2
         address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}

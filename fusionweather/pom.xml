@@ -67,14 +67,6 @@
       <groupId>com.huaweicloud</groupId>
     </dependency>
     <dependency>
-      <artifactId>spring-cloud-starter-huawei-config</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-swagger</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <dependency>
       <artifactId>slf4j-log4j12</artifactId>
       <groupId>org.slf4j</groupId>
     </dependency>
