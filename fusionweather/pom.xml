@@ -1,36 +1,28 @@
 <?xml version="1.0"?>
 <project
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <artifactId>weathermap</artifactId>
+    <groupId>dev</groupId>
+    <version>1.0.0</version>
+  </parent>
+
   <artifactId>fusionweather</artifactId>
+  <groupId>com.service</groupId>
 
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>com.service.fusionweather.FusionweatherApplication</mainClass>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-        <groupId>org.springframework.boot</groupId>
-        <version>2.3.2.RELEASE</version>
-      </plugin>
+  <modelVersion>4.0.0</modelVersion>
+  <name>fusionweather</name>
 
-      <!-- check style -->
-      <plugin>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <groupId>org.apache.maven.plugins</groupId>
-        <version>3.0.0</version>
-      </plugin>
+  <packaging>jar</packaging>
+  <properties>
+    <demo.main>com.service.fusionweather.FusionweatherApplication</demo.main>
+  </properties>
 
-    </plugins>
-  </build>
+  <url>http://maven.apache.org</url>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -59,16 +51,28 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
       <groupId>com.huaweicloud</groupId>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
-      <artifactId>slf4j-log4j12</artifactId>
-      <groupId>org.slf4j</groupId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <artifactId>junit</artifactId>
@@ -76,23 +80,32 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <groupId>com.service</groupId>
 
-  <modelVersion>4.0.0</modelVersion>
-  <name>fusionweather</name>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>com.service.fusionweather.FusionweatherApplication</mainClass>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.3.2.RELEASE</version>
+      </plugin>
 
-  <packaging>jar</packaging>
+      <!-- check style -->
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.0.0</version>
+      </plugin>
 
-  <parent>
-    <artifactId>weathermap</artifactId>
-    <groupId>dev</groupId>
-    <version>1.0.0</version>
-  </parent>
-
-  <properties>
-    <demo.main>com.service.fusionweather.FusionweatherApplication</demo.main>
-  </properties>
-
-  <url>http://maven.apache.org</url>
-
+    </plugins>
+  </build>
 </project>

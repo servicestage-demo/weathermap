@@ -1,8 +1,87 @@
 <?xml version="1.0"?>
 <project
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>weather-beta</artifactId>
+  <groupId>com.service</groupId>
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>weather-beta</name>
+  <packaging>jar</packaging>
+
+  <parent>
+    <artifactId>weathermap</artifactId>
+    <groupId>dev</groupId>
+    <version>1.0.0</version>
+  </parent>
+
+  <properties>
+    <app.main>com.service.weather.WeatherApplication</app.main>
+  </properties>
+
+  <url>http://maven.apache.org</url>
+
+  <version>2.0.0</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.huaweicloud</groupId>
+      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-log4j2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <artifactId>junit</artifactId>
+      <groupId>junit</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <artifactId>spring-cloud-huawei-dependencies</artifactId>
+        <groupId>com.huaweicloud</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud-huawei.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <groupId>org.springframework.cloud</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-cloud.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <build>
     <plugins>
       <plugin>
@@ -38,68 +117,4 @@
 
     </plugins>
   </build>
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <artifactId>spring-cloud-starter-huawei-service-engine</artifactId>
-      <groupId>com.huaweicloud</groupId>
-    </dependency>
-    <!-- using log4j -->
-    <dependency>
-      <artifactId>slf4j-log4j12</artifactId>
-      <groupId>org.slf4j</groupId>
-    </dependency>
-    <dependency>
-      <artifactId>junit</artifactId>
-      <groupId>junit</groupId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <artifactId>spring-cloud-huawei-dependencies</artifactId>
-        <groupId>com.huaweicloud</groupId>
-        <scope>import</scope>
-        <type>pom</type>
-        <version>${spring-cloud-huawei.version}</version>
-      </dependency>
-      <dependency>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <groupId>org.springframework.boot</groupId>
-        <scope>import</scope>
-        <type>pom</type>
-        <version>${spring-boot.version}</version>
-      </dependency>
-      <dependency>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <groupId>org.springframework.cloud</groupId>
-        <scope>import</scope>
-        <type>pom</type>
-        <version>${spring-cloud.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-  <groupId>com.service</groupId>
-  <modelVersion>4.0.0</modelVersion>
-
-  <name>weather-beta</name>
-  <packaging>jar</packaging>
-
-  <parent>
-    <artifactId>weathermap</artifactId>
-    <groupId>dev</groupId>
-    <version>1.0.0</version>
-  </parent>
-
-  <properties>
-    <app.main>com.service.weather.WeatherApplication</app.main>
-  </properties>
-
-  <url>http://maven.apache.org</url>
-
-  <version>2.0.0</version>
 </project>

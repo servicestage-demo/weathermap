@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <!-- 日志路径 -->
+        <property name="FILE_PATH" value="./logs/fusion-weather" />
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d][%t][%p][%X{x-trace-id}][%X{apm-traceid}][%c:%L] %m%n" />
+        </Console>
+
+        <RollingFile name="AccessLog" fileName="${FILE_PATH}/access.log"
+          filePattern="${FILE_PATH}/access-%d{yyyy-MM-dd}_%i.log.gz">
+            <PatternLayout pattern="[%d][%t][%c][%X{apm-traceid}] %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+
+        <RollingFile name="MetricsLog" fileName="${FILE_PATH}/metrics.log"
+          filePattern="${FILE_PATH}/metrics-%d{yyyy-MM-dd}_%i.log.gz">
+            <PatternLayout pattern="[%d][%c] %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="metrics_logger" level="INFO" additivity="false">
+            <AppenderRef ref="MetricsLog"/>
+        </Logger>
+        <Logger name="access_logger" level="INFO" additivity="false">
+            <AppenderRef ref="AccessLog"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
