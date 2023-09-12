@@ -2,17 +2,17 @@
 <Configuration>
     <Properties>
         <!-- 日志路径 -->
-        <property name="FILE_PATH" value="./logs/edge" />
+        <property name="FILE_PATH" value="./logs/weather-beta" />
     </Properties>
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d [%t][%p][%c:%L] %m%n" />
+            <PatternLayout pattern="%d [%t][%p][%X{x-trace-id}][%X{apm-traceid}][%c:%L] %m%n" />
         </Console>
 
         <RollingFile name="AccessLog" fileName="${FILE_PATH}/access.log"
           filePattern="${FILE_PATH}/access-%d{yyyy-MM-dd}_%i.log.gz">
-            <PatternLayout pattern="%d [%t][%c] %m%n"/>
+            <PatternLayout pattern="%d [%t][%c][%X{apm-traceid}] %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="20MB"/>
             </Policies>
