@@ -1,18 +1,18 @@
 package com.service.forecast.controller;
 
-import javax.annotation.PostConstruct;
+import java.util.Random;
+
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.netflix.config.DynamicIntProperty;
-import com.netflix.config.DynamicPropertyFactory;
 import com.service.forecast.entity.objective.ForecastSummary;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:16:52.801+08:00")
@@ -25,27 +25,23 @@ public class ForecastImpl {
   @Autowired
   private ForecastImplDelegate userForecastweatherdataDelegate;
 
-  private int latencyTime = 0;
+  @Autowired
+  private Environment environment;
 
-  @PostConstruct
-  public void init() {
-    LOGGER.info("Init success");
-    DynamicIntProperty latency = DynamicPropertyFactory.getInstance().getIntProperty("latency", 0);
-    latency.addCallback(() -> {
-      latencyTime = latency.get();
-      LOGGER.info("Latency time change to {}", latencyTime);
-    });
-    latencyTime = latency.get();
+  private int getLatencyTime() {
+    return environment.getProperty("latency", int.class, 3000);
   }
+
 
   @RequestMapping(value = "/show",
       produces = {"application/json"},
       method = RequestMethod.GET)
   public ForecastSummary getForecast(@RequestParam(value = "city", required = true) String city) {
     LOGGER.info("getForecast() is called, city = [{}]", city);
-    if (latencyTime > 0) {
+    Random random = new Random();
+    if (random.nextInt(10) == 0 && getLatencyTime() > 0) {
       try {
-        Thread.sleep(latencyTime);
+        Thread.sleep(getLatencyTime());
       } catch (Exception e) {
 
       }
