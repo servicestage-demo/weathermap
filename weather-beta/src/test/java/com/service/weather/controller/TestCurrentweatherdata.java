@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.stream.Collectors;
 
-import org.apache.servicecomb.foundation.common.utils.Log4jUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +23,6 @@ public class TestCurrentweatherdata {
 
   @Before
   public void setUp() throws Exception {
-    Log4jUtils.init();
   }
 
   @Test

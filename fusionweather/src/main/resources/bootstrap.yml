@@ -6,9 +6,6 @@ spring:
     name: fusionweather
   cloud:
     servicecomb:
-      context:
-        query-context-mapper:
-          city: city
       discovery:
         version: 0.0.2
         address: ${PAAS_CSE_SC_ENDPOINT:http://127.0.0.1:30100}
@@ -19,7 +16,18 @@ spring:
         serverAddr: ${PAAS_CSE_CC_ENDPOINT:http://127.0.0.1:30110}
         serverType: kie
       dashboard:
-        enabled: true
+        enabled: false
         address: ${PAAS_CSE_DS_ENDPOINT:http://127.0.0.1:30109}
         invocationProviderEnabled: true # 使用基于请求的接口计数
         governanceProviderEnabled: false # 使用基于熔断器的计数
+      # 开启 access log
+      context:
+        enableTraceInfo: true
+        query-context-mapper:
+          city: city
+      # 开启 metrics
+      metrics:
+        logsEnabled: true
+        # includePattern: (.)* # Java正则表达式，只统计包含的 metrics ID。
+        # excludePattern: (.)* # Java正则表达式，不统计包含的 metrics ID。
+        logsInterval: PT1M # Duration表达式，打印周期
