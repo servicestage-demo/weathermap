@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
     var proxy_host = process.env.HTTP_PROXY_HOST || '127.0.0.1';
     var proxy_port = process.env.HTTP_PROXY_PORT || '30101';
-    var service_addr = process.env.SERVICE_ADDR || 'fusionweather'
+    var service_addr = process.env.SERVICE_ADDR || '127.0.0.1:10392'
 
     // Adapt to the scenario without Mesher.You only need to configure the SERVICE_ADDR
     if (service_addr.split(":").length === 2

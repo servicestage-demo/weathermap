@@ -1,5 +1,6 @@
 package com.service.fusionweather.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 
 import org.slf4j.Logger;
@@ -29,5 +30,16 @@ public class FusionweatherImpl {
       @RequestParam(value = "user", required = false) String user) {
     LOGGER.info("show() is called, city = [{}], user = [{}]", city, user);
     return userFusionweatherdataDelegate.showFusionWeather(city, user);
+  }
+
+  @RequestMapping(value = "/governanceTest",
+      produces = {"application/json"},
+      method = RequestMethod.GET)
+  public Object circuitBreakerTest(@RequestParam(value = "errorTest", required = false) boolean errorTest)
+      throws Exception {
+    if (errorTest) {
+      return userFusionweatherdataDelegate.forecastError();
+    }
+    return userFusionweatherdataDelegate.showFusionWeather("shenzhen", null);
   }
 }
