@@ -234,6 +234,7 @@
 
                     // forecast
                     var rForecastWeather = response.data.forecastWeather || {};
+                    $scope.forecastErrorMessage = rForecastWeather.errorMessage;
                     rForecastWeather.dateList = rForecastWeather.dateList || [];
                     angular.forEach(rForecastWeather.dateList.slice(0, 12), function (item, index) {
                         var tm = $filter('date')(parseInt(item.date) * 1000, "MM-dd HH:mm");
@@ -346,41 +347,46 @@
 
                     // current weather
                     var rCurrentWeather = response.data.currentWeather || {};
-                    $scope.weatherTableModel = {
-                        position: rCurrentWeather.cityName,
-                        tempValue: rCurrentWeather.temperature,
-                        temp: $scope.globalData.tempType == 'F' ? toFahrenheit(rCurrentWeather.temperature) + " °F" : rCurrentWeather.temperature + " °C",
-                        image: getImg(rCurrentWeather.image),
-                        time: $filter('date')(parseInt(rCurrentWeather.date) * 1000, "yyyy-MM-dd HH:mm"),
-                        weather: rCurrentWeather.weather,
-                        data: [{
-                            name: "Wind",
-                            value: rCurrentWeather.windSpeed + " m/s"
-                        }, {
-                            name: "Cloudiness",
-                            value: rCurrentWeather.cloudiness
-                        }, {
-                            name: "Pressure",
-                            value: rCurrentWeather.pressure + " hpa"
-                        }, {
-                            name: "Humidity",
-                            value: rCurrentWeather.humidity + " %"
-                        }, {
-                            name: "Sunrise",
-                            value: $filter('date')(parseInt(rCurrentWeather.sunrise) * 1000, "HH:mm")
-                        }, {
-                            name: "Sunset",
-                            value: $filter('date')(parseInt(rCurrentWeather.sunset) * 1000, "HH:mm")
-                        }, {
-                            name: "Geo coords",
-                            value: "[" + rCurrentWeather.coordinatesLat + ", " + rCurrentWeather.coordinatesLon + "]"
-                        }]
-                    };
+                    if (response.data.currentWeather != null) {
+                        $scope.weatherTableShow = true;
+                        $scope.weatherTableModel = {
+                            position: rCurrentWeather.cityName,
+                            tempValue: rCurrentWeather.temperature,
+                            temp: $scope.globalData.tempType == 'F' ? toFahrenheit(rCurrentWeather.temperature) + " °F" : rCurrentWeather.temperature + " °C",
+                            image: getImg(rCurrentWeather.image),
+                            time: $filter('date')(parseInt(rCurrentWeather.date) * 1000, "yyyy-MM-dd HH:mm"),
+                            weather: rCurrentWeather.weather,
+                            data: [{
+                                name: "Wind",
+                                value: rCurrentWeather.windSpeed + " m/s"
+                            }, {
+                                name: "Cloudiness",
+                                value: rCurrentWeather.cloudiness
+                            }, {
+                                name: "Pressure",
+                                value: rCurrentWeather.pressure + " hpa"
+                            }, {
+                                name: "Humidity",
+                                value: rCurrentWeather.humidity + " %"
+                            }, {
+                                name: "Sunrise",
+                                value: $filter('date')(parseInt(rCurrentWeather.sunrise) * 1000, "HH:mm")
+                            }, {
+                                name: "Sunset",
+                                value: $filter('date')(parseInt(rCurrentWeather.sunset) * 1000, "HH:mm")
+                            }, {
+                                name: "Geo coords",
+                                value: "[" + rCurrentWeather.coordinatesLat + ", " + rCurrentWeather.coordinatesLon + "]"
+                            }]
+                        };
 
-                    // uvi
-                    $scope.uviDataModel.date = $filter('date')(parseInt(rCurrentWeather.uviDate) * 1000, "yyyy-MM-dd HH:mm");
-                    $scope.uviDataModel.value = rCurrentWeather.uviValue;
-                    $scope.uviDataModel.isBeta = rCurrentWeather.uviDateISO != null;
+                        // uvi
+                        $scope.uviDataModel.date = $filter('date')(parseInt(rCurrentWeather.uviDate) * 1000, "yyyy-MM-dd HH:mm");
+                        $scope.uviDataModel.value = rCurrentWeather.uviValue;
+                        $scope.uviDataModel.isBeta = rCurrentWeather.uviDateISO != null;
+                    } else {
+                        $scope.weatherTableShow = false;
+                    }
 
                     // location
                     $scope.globalData.city = rForecastWeather.cityName || rCurrentWeather.cityName || "";

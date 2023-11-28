@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service.weather.entity.objective.CurrentWeatherSummary;
 import com.service.weather.util.CustomException;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.CseSpringDemoCodegen", date = "2017-11-01T10:26:36.166+08:00")
 
 @RestController
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
+@RefreshScope
 public class WeatherImpl {
   private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
 
@@ -39,9 +40,6 @@ public class WeatherImpl {
     if (allowRandomException) {
       LOGGER.info("request received");
       Boolean b = new Random().nextBoolean();
-      /*if (b) {
-        throw new CustomException();
-      }*/
       throw new CustomException();
     }
 

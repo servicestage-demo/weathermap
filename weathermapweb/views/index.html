@@ -116,7 +116,7 @@
                         </div>
                     </div>
 
-                    <div class="card-item-style">
+                    <div class="card-item-style" ng-show="weatherTableShow">
                         <div class="item-title">
                             <span ng-bind="globalData.text1"></span>
                             <span class="pd-left-md">
@@ -141,10 +141,15 @@
                             </tbody>
                         </table>
                     </div>
-                    
+                    <div class="card-item-style" ng-show="!weatherTableShow">
+                        <span>no weather data!</span>
+                    </div>
                 </div>
                 <div class="col-md-9">
-                    <uib-tabset class="card-item-style" active="0">
+                    <div class="card-item-style" ng-show="forecastErrorMessage">
+                        <span ng-bind="forecastErrorMessage"></span>
+                    </div>
+                    <uib-tabset class="card-item-style" active="0" ng-show="!forecastErrorMessage">
                         <uib-tab index="0" heading="Main">
                             <div class="sub-tab-div">
                                 <h4 class="item-title" ng-bind="globalData.text2"></h4>

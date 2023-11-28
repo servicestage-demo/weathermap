@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,7 @@ import com.service.weather.util.CustomException;
 
 @RestController
 @RequestMapping(path = "/weather", produces = MediaType.APPLICATION_JSON)
+@RefreshScope
 public class WeatherImpl {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(WeatherImpl.class);
@@ -46,12 +48,6 @@ public class WeatherImpl {
       method = RequestMethod.GET)
   public CurrentWeatherSummary showCurrentWeather(@RequestParam(value = "city", required = true) String city,
       @RequestParam(value = "user", required = false) String user) {
-
-    Random random = new Random();
-    if (allowRandomException && random.nextInt(10) == 0) {
-      throw new CustomException();
-    }
-
     if (timewait && getLatencyTime() > 0) {
       try {
         Thread.sleep(getLatencyTime());
