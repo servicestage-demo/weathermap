@@ -15,9 +15,9 @@
   <packaging>pom</packaging>
 
   <properties>
-    <spring-boot.version>2.7.10</spring-boot.version>
-    <spring-cloud-huawei.version>1.11.0-2021.0.x</spring-cloud-huawei.version>
-    <spring-cloud.version>2021.0.5</spring-cloud.version>
+    <spring-boot.version>2.7.17</spring-boot.version>
+    <spring-cloud-huawei.version>1.11.3-2021.0.x</spring-cloud-huawei.version>
+    <spring-cloud.version>2021.0.8</spring-cloud.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
     <argLine>-Dfile.encoding=UTF-8</argLine>
