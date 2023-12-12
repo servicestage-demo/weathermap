@@ -7,7 +7,7 @@ servicecomb:
     properties:
       allowCrossApp: false
     registry:
-      address: http://127.0.0.1:30100 #此处填写要注册到的微服务引擎的注册中心地址
+      address: http://192.168.0.26:30100 #此处填写要注册到的微服务引擎的注册中心地址
       instance:
         watch: false
   config:
