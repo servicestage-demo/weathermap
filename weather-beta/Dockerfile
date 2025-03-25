@@ -6,5 +6,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 WORKDIR /home/apps/
 ADD target/weather-beta-2.0.0.jar .
 ADD start.sh .
+RUN echo version:1.0.1 > /home/apps/version.txt
 
 ENTRYPOINT ["sh", "/home/apps/start.sh"]
